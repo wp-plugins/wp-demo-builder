@@ -1,0 +1,83 @@
+/**
+ * @version    $Id$
+ * @package    WPDB_Demo_Builder
+ * @author     WPDemoBuilder Team <admin@wpdemobuilder.com>
+ * @copyright  Copyright (C) 2014 WPDemoBuilder.com. All Rights Reserved.
+ * @license    GNU/GPL v2 or later http://www.gnu.org/licenses/gpl-2.0.html
+ *
+ * Websites: http://www.wpdemobuilder.com
+ */
+
+/* Lower admin bar z-index */
+#wpadminbar {
+	z-index: 1000;
+}
+
+/* Base site selector */
+#please-wait-dialog .thumbnail {
+	cursor: pointer;
+	margin: 5px;
+	text-align: center;
+	width: 129px;
+	padding: 0;
+	
+	border: none;
+	box-shadow: none;
+	opacity: 0.8;
+	
+	transition: all 500ms;
+}
+#please-wait-dialog .thumbnail:hover,
+#please-wait-dialog .thumbnail.selected {
+	
+	opacity: 1;
+}
+#please-wait-dialog .thumbnail .site-thumbnail {
+	width: 129px;
+	height: 89px;
+	overflow: hidden;
+	background: url(../images/thumb-basesite.png) 50% 50% no-repeat;
+	
+	border: 2px solid rgba(0,0,0,0.2);
+	border-radius: 5px;
+	
+	transition: all 500ms;
+}
+#please-wait-dialog .thumbnail:hover .site-thumbnail {
+	border-color: rgba(0,0,0,0.4);
+}
+#please-wait-dialog .thumbnail.selected .site-thumbnail {
+	border-color: #3177b4;
+}
+#please-wait-dialog .thumbnail .site-thumbnail img {
+	width: 100%;
+}
+
+#please-wait-dialog .thumbnail .caption {
+	font-size: 10px;
+	font-weight: bold;
+	height: 18px;
+	line-height: 18px;
+	margin: 4px auto;
+	
+	border-radius: 20px;
+	padding: 0px 5px;
+	
+	transition: all 500ms;
+}
+
+#please-wait-dialog .thumbnail:hover .caption {
+	background: -webkit-linear-gradient(#a9a9a9 0%, #c3c3c3 100%);
+}
+#please-wait-dialog .thumbnail.selected .caption {
+	background: -webkit-linear-gradient(#4379c5 0%, #1b8dd3 100%);
+	color: #fff;
+}
+
+#please-wait-dialog .thumbnail .caption label {
+	display: block;
+	margin: 0 5px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
