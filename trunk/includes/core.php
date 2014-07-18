@@ -122,11 +122,11 @@ class WPDB_Demo_Builder {
 			deactivate_plugins( WPDB_PLUGIN, true, is_network_admin() );
 
 			// Then, redirect to an error page
-			if ( doing_action( 'init' ) ) {
-				wp_die( __( 'We are sorry! You cannot run WP Demo Builder plugin in localhost environment.', WPDB_TEXT ) );
-			} else {
-				die( __( 'We are sorry! You cannot run WP Demo Builder plugin in localhost environment.', WPDB_TEXT ) );
-			}
+			//if ( doing_action( 'init' ) ) {
+				//wp_die( __( 'We are sorry! You cannot run WP Demo Builder plugin in localhost environment.', WPDB_TEXT ) );
+			//} else {
+			die( __( 'We are sorry! You cannot run WP Demo Builder plugin in localhost environment.', WPDB_TEXT ) );
+			//}
 
 			// Exit immediately to prevent WordPress from processing further
 			exit;
