@@ -38,12 +38,12 @@ WP Demo Builder helps you create separate demo sites that allow your users to li
 
 1. Download and upload the zip file to the /wp-content/plugins/ directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
-3. Go to plugin’s setting panel. 
-4. Click Push to Demo Builder Server and all your demo website’s data will be automatically transferred to WordPress Demo Builder.
+3. Go to plugin's setting panel. 
+4. Click Push to Demo Builder Server and all your demo website's data will be automatically transferred to WordPress Demo Builder.
 
 <h4>Log in to WPDB and view your demo as Base Site:</h4>
 
-You’re done! Now you have a shiny WordPress Demo Builder tool running on your demo site!
+You're done! Now you have a shiny WordPress Demo Builder tool running on your demo site!
 
 == More Details ==
 
