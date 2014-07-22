@@ -22,7 +22,7 @@ WP Demo Builder helps you create separate demo sites that allow your users to li
 
 * <strong>Ability to install any plug-ins:</strong> <strong>WP Demo Builder</strong> is the only service that lets your customers install plug-ins! This helps them better appreciate the quality of your product.
 
-* <strong>Export your demo to your customers:</strong> With <strong>WP Demo Builder</strong>, you can export each customer’s demo site into a quickstart package so that they can easily deploy on their production site.
+* <strong>Export your demo to your customers:</strong> With <strong>WP Demo Builder</strong>, you can export each customer's demo site into a quickstart package so that they can easily deploy on their production site.
 
 <i>*If you like our plugin and service, please vote for it!*</i>
 
