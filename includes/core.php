@@ -55,11 +55,67 @@ class WPDB_Demo_Builder {
 		'button_position' => 'left',
 		'button_label'    => '',
 		'button_style'    => 'dark',
+		'button_icon'    => '',
 	);
 
+	/**
+	 * Define remote arguments for Ajax-requests.
+	 *
+	 * @var  array
+	 */
     protected static $remote_get_args = array(
         'timeout'     => 60,
     );
+
+    /**
+     * Define icons for demo buider register button.
+     *
+     * @var  array
+     */
+    protected static $ico_moon = array("icon-home" => "home", "icon-user" => "user", "icon-locked" => "locked",
+    		"icon-comments" => "comments", "icon-comments-2" => "comments-2", "icon-out" => "out",
+    		"icon-redo" => "redo", "icon-undo" => "undo", "icon-file-add" => "file-add",
+    		"icon-plus" => "plus", "icon-pencil" => "pencil", "icon-pencil-2" => "pencil-2",
+    		"icon-folder" => "folder", "icon-folder-2" => "folder-2", "icon-picture" => "picture",
+    		"icon-pictures" => "pictures", "icon-list-view" => "list-view", "icon-power-cord" => "power-cord",
+    		"icon-cube" => "cube", "icon-puzzle" => "puzzle", "icon-flag" => "flag",
+    		"icon-tools" => "tools", "icon-cogs" => "cogs", "icon-cog" => "cog",
+    		"icon-equalizer" => "equalizer", "icon-wrench" => "wrench", "icon-brush" => "brush",
+    		"icon-eye" => "eye", "icon-checkbox-unchecked" => "checkbox-unchecked", "icon-checkbox" => "checkbox",
+    		"icon-checkbox-partial" => "checkbox-partial", "icon-star" => "star", "icon-star-2" => "star-2",
+    		"icon-star-empty" => "star-empty", "icon-calendar" => "calendar", "icon-calendar-2" => "calendar-2",
+    		"icon-help" => "help", "icon-support" => "support", "icon-warning" => "warning",
+    		"icon-checkmark" => "checkmark", "icon-cancel" => "cancel", "icon-minus" => "minus",
+    		"icon-remove" => "remove", "icon-mail" => "mail", "icon-mail-2" => "mail-2",
+    		"icon-drawer" => "drawer", "icon-drawer-2" => "drawer-2", "icon-box-add" => "box-add",
+    		"icon-box-remove" => "box-remove", "icon-search" => "search", "icon-filter" => "filter",
+    		"icon-camera" => "camera", "icon-play" => "play", "icon-music" => "music",
+    		"icon-grid-view" => "grid-view", "icon-grid-view-2" => "grid-view-2", "icon-menu" => "menu",
+    		"icon-thumbs-up" => "thumbs-up", "icon-thumbs-down" => "thumbs-down", "icon-cancel-2" => "cancel-2",
+    		"icon-plus-2" => "plus-2", "icon-minus-2" => "minus-2", "icon-key" => "key",
+    		"icon-quote" => "quote", "icon-quote-2" => "quote-2", "icon-database" => "database",
+    		"icon-location" => "location", "icon-zoom-in" => "zoom-in", "icon-zoom-out" => "zoom-out",
+    		"icon-expand" => "expand", "icon-contract" => "contract", "icon-expand-2" => "expand-2",
+    		"icon-contract-2" => "contract-2", "icon-health" => "health", "icon-wand" => "wand",
+    		"icon-refresh" => "refresh", "icon-vcard" => "vcard", "icon-clock" => "clock",
+    		"icon-compass" => "compass", "icon-address" => "address", "icon-feed" => "feed",
+    		"icon-flag-2" => "flag-2", "icon-pin" => "pin", "icon-lamp" => "lamp",
+    		"icon-chart" => "chart", "icon-bars" => "bars", "icon-pie" => "pie",
+    		"icon-dashboard" => "dashboard", "icon-lightning" => "lightning",
+    		"icon-move" => "move", "icon-next" => "next", "icon-previous" => "previous",
+    		"icon-first" => "first", "icon-last" => "last", "icon-loop" => "loop",
+    		"icon-shuffle" => "shuffle", "icon-arrow-first" => "arrow-first", "icon-arrow-last" => "arrow-last",
+    		"icon-arrow-up" => "arrow-up", "icon-arrow-right" => "arrow-right", "icon-arrow-down" => "arrow-down",
+    		"icon-arrow-left" => "arrow-left", "icon-arrow-up-2" => "arrow-up-2", "icon-arrow-right-2" => "arrow-right-2",
+    		"icon-arrow-down-2" => "arrow-down-2", "icon-arrow-left-2" => "arrow-left-2", "icon-play-2" => "play-2",
+    		"icon-menu-2" => "menu-2", "icon-arrow-up-3" => "arrow-up-3", "icon-arrow-right-3" => "arrow-right-3",
+    		"icon-arrow-down-3" => "arrow-down-3", "icon-arrow-left-3" => "arrow-left-3", "icon-printer" => "printer",
+    		"icon-color-palette" => "color-palette", "icon-camera-2" => "camera-2", "icon-file" => "file",
+    		"icon-file-remove" => "file-remove", "icon-copy" => "copy", "icon-cart" => "cart",
+    		"icon-basket" => "basket", "icon-broadcast" => "broadcast", "icon-screen" => "screen",
+    		"icon-tablet" => "tablet", "icon-mobile" => "mobile", "icon-users" => "users",
+    		"icon-briefcase" => "briefcase", "icon-download" => "download", "icon-upload" => "upload",
+    		"icon-bookmark" => "bookmark", "icon-out-2" => "out-2" );
 	/**
 	 * Hook into WordPress.
 	 *
@@ -305,6 +361,10 @@ class WPDB_Demo_Builder {
 			$settings = get_option( 'wp_demo_builder_settings', self::$settings );
 		}
 
+		// Get Iconmoo
+		$icon_moons = self::$ico_moon;
+		asort($icon_moons);
+
 		// Load settings template
 		include_once dirname( dirname( __FILE__ ) ) . '/templates/embed-settings.php';
 	}
@@ -322,9 +382,15 @@ class WPDB_Demo_Builder {
 		wp_enqueue_style("GoogleFontTitiliumWeb", "http://fonts.googleapis.com/css?family=Titillium+Web:400,200,300,600,700,900");
 		if ( $page != 'embed_settings' ) {
 		// 3rd-party CSS
-			wp_enqueue_style( 'bootstrap'      , plugins_url( 'assets/3rd-party/bootstrap-3.1.1-dist/css/bootstrap.min.css'      , dirname( __FILE__ ) ) );
+			wp_enqueue_style( 'bootstrap', plugins_url( 'assets/3rd-party/bootstrap-3.1.1-dist/css/bootstrap.min.css', dirname( __FILE__ ) ) );
 			wp_enqueue_style( 'bootstrap-theme', plugins_url( 'assets/3rd-party/bootstrap-3.1.1-dist/css/bootstrap-theme.min.css', dirname( __FILE__ ) ) );
 		}
+
+		if ( $page == 'embed_settings' ) {
+			// 3rd-party Iconmoon CSS
+			wp_enqueue_style( 'wpdb-icon-moon', plugins_url( 'assets/3rd-party/font-icomoon/css/icomoon.css', dirname( __FILE__ ) ) );
+		}
+
 		// 3rd-party JS
 		wp_enqueue_script( 'bootstrap', plugins_url( 'assets/3rd-party/bootstrap-3.1.1-dist/js/bootstrap.min.js', dirname( __FILE__ ) ) );
 
@@ -397,7 +463,7 @@ class WPDB_Demo_Builder {
 
 			// Check folder upload is wriable or not
 			if ( !is_writable( $basedir ) ) {
-				throw new Exception( __( 'The UPLOADS folder is UNWRIABLE', WPDB_TEXT ) );
+				throw new Exception( __( 'The UPLOADS folder is UNWRITABLE', WPDB_TEXT ) );
 			}
 
 			if ( ! self::$fs->exists( $path ) || ! self::$fs->is_dir( $path ) ) {
@@ -928,6 +994,7 @@ class WPDB_Demo_Builder {
 		}
 
 		wp_enqueue_style( 'wpdb-style', plugins_url( 'assets/css/wpdb-style.css', dirname( __FILE__ ) ) );
+		wp_enqueue_style( 'wpdb-icon-moon', plugins_url( 'assets/3rd-party/font-icomoon/css/icomoon.css', dirname( __FILE__ ) ) );
 	}
 
 	/**
@@ -966,7 +1033,7 @@ class WPDB_Demo_Builder {
 	 * Get login form from WP Demo Builder server.
 	 */
 	protected static function login_form() {
-		$result = wp_remote_get( self::$server . 'customer/login', self::$remote_get_args );
+		$result = wp_remote_get( self::$server . 'customer/login?ref=plugin', self::$remote_get_args );
 
 		exit( $result['body'] );
 	}
@@ -1025,6 +1092,56 @@ class WPDB_Demo_Builder {
 		}
 
 		return null;
+	}
+
+	/**
+	 * Re-connect to get embed code
+	 *
+	 * @return  void
+	 */
+	protected static function re_connect() {
+		// Get customer email, password and base_site_id to re-connect
+		$email    		= isset( $_POST['email'] ) ? $_POST['email'] : null;
+		$password 		= isset( $_POST['password'] ) ? $_POST['password'] : null;
+		$base_site_id 	= isset( $_POST['base_site_id'] ) ? $_POST['base_site_id'] : null;
+
+		if ( ! empty( $email ) && ! empty( $password ) && ! empty( $base_site_id ) ) {
+			// Build query
+			$query['body'] 			= array( 'email' => $email, 'password' => $password, 'base_site_id' => $base_site_id, 'remoteurl' => urlencode( site_url() ) );
+			$query['method'] 		= 'POST';
+			$query['timeout'] 		= self::$remote_get_args['timeout'];
+
+			$result = wp_remote_post( self::$server . 'customer/client/get-embed-code', $query );
+
+			if ( is_wp_error( $result ) ) {
+				exit( '<div class="alert alert-danger">' . $result->get_error_message() . '</div>' );
+			} else {
+				// Parse server response
+				$request = json_decode( $result['body'] );
+
+				if ( ! $request ) {
+					// Invalid server response
+					exit( $result['body'] );
+				} else {
+					// Customer authentication fail
+					if ( 'false' == $request->result ) {
+						exit( '<div class="alert alert-danger">' . $request->message . '</div>' );
+					} elseif ( 'true' == $request->result ) {
+						// Save embed code to current user meta
+						if ( ! update_option( 'wp_demo_builder_embed_code', $request->response ))
+						{
+							exit( '<div class="alert alert-danger">' . __( 'Cannot save embed code!', WPDB_TEXT ) . '</div>' );
+						} else {
+							exit( '<div class="alert alert-success">' . __( 'You have re-connected successfully', WPDB_TEXT ) . '</div>' );
+						}
+					}
+				}
+			}
+		}
+
+		// Exit immediately to prevent the plugin from generating and returning JSON status
+		$return = array( 'result' => 'false', 'response' => '', 'message' => __( 'Invalid parameters.', WPDB_TEXT ) );
+		exit( json_encode( $return ) );
 	}
 }
 

@@ -41,15 +41,25 @@ div#wpdb-demo-builder-toggle > a > span,
 div#wpdb-toggle > a > span {
     display: inline-block;
     line-height: 36px;
-    min-width: 12px;
+    min-width: 20px;
     font-size: 13px;
     font-weight: bold;
     text-transform: uppercase;
     letter-spacing: .09em;
 }
 
+div#wpdb-demo-builder-toggle > a > span.wpdb-bootstrap,
+div#wpdb-toggle > a > span.wpdb-bootstrap {
+ 	margin-right: 10px;
+	margin-left: 12px;
+}
 
 
+div#wpdb-demo-builder-toggle > a > span.wpdb-bootstrap i,
+div#wpdb-toggle > a > span.wpdb-bootstrap i {
+	font-size: 15px;
+	vertical-align: middle;
+}
 /* --- STYLE DARK --- */
 div#wpdb-demo-builder-toggle.dark > div > iframe,
 div#wpdb-toggle.dark > div > iframe {
@@ -74,6 +84,10 @@ div#wpdb-toggle.dark > a {
 div#wpdb-demo-builder-toggle.dark > a:hover,
 div#wpdb-toggle.dark > a:hover {
 	color: #eee;
+}
+div#wpdb-demo-builder-toggle.dark > a > span.wpdb-bootstrap i,
+div#wpdb-toggle.dark > a > span.wpdb-bootstrap i {
+	color: rgb(241, 207, 72);
 }
 
 
@@ -102,6 +116,13 @@ div#wpdb-demo-builder-toggle.light > a:hover,
 div#wpdb-toggle.light > a:hover {
 	color: #333;
 }
+div#wpdb-demo-builder-toggle.light > a > span.wpdb-bootstrap i,
+div#wpdb-toggle.light > a > span.wpdb-bootstrap i {
+	color: rgb(165, 78, 141);
+}
+
+
+
 
 /* --- POSITION LEFT --- */
 div#wpdb-demo-builder-toggle.left,

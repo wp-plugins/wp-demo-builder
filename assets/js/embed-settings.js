@@ -48,5 +48,14 @@
 
 		// Mark currently selected position
 		//$('#wpdb-embed-settings .form-group td a + input[checked]').prev().trigger('click');
+		
+		$('#wpdb-embed-settings').find('li.wpdb-item').click(function() {
+			// Clear previous selection
+			$(this).parent().children('li.wpdb-item').removeClass('active')
+			
+			// Mark selection
+			$(this).addClass('active');
+			$('#button-icon-hidden-input').val($(this).children('a.icons-item').attr('data-value'));
+		});
 	});
 })(jQuery);
