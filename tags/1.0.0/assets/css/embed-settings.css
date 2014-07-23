@@ -1,0 +1,19 @@
+/**
+ * @version    $Id$
+ * @package    WPDB_Demo_Builder
+ * @author     WPDemoBuilder Team <admin@wpdemobuilder.com>
+ * @copyright  Copyright (C) 2014 WPDemoBuilder.com. All Rights Reserved.
+ * @license    GNU/GPL v2 or later http://www.gnu.org/licenses/gpl-2.0.html
+ *
+ * Websites: http://www.wpdemobuilder.com
+ */
+
+#wpdb-embed-settings .form-group td a {
+	text-decoration: none;
+}
+#wpdb-embed-settings .form-group td a:hover {
+	color: green;
+}
+#wpdb-embed-settings .form-group td a.selected {
+	color: orange;
+}
