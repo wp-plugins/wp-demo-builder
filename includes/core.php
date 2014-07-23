@@ -708,7 +708,7 @@ class WPDB_Demo_Builder {
 			$values = array();
 
 			foreach ( array_values( $result ) as $value ) {
-				$values[] = str_replace( array( "\r", "\n", "'" ), array( '\\r', '\\n', "\\'" ), $value );
+				$values[] = str_replace( array( '\\', "\r", "\n", "'" ), array( '\\\\', '\\r', '\\n', "\\'" ), $value );
 			}
 
 			$export[] = "('" . implode( "', '", $values ) . "'),";
