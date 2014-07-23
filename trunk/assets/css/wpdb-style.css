@@ -20,8 +20,9 @@ div#wpdb-toggle {
 }
 div#wpdb-demo-builder-toggle > div > iframe,
 div#wpdb-toggle > div > iframe {
-    background: #fff url(/assets/wpdb/common/images/db-loading.gif) center center no-repeat;
+    background: #fff url(http://cpanel.wpdemobuilder.com/assets/wpdb/common/images/db-loading.gif) center center no-repeat;
     z-index: 10;
+    width: 480px !important;
 }
 div#wpdb-demo-builder-toggle>div,div#wpdb-demo-builder-toggle>a,
 div#wpdb-toggle>div,div#wpdb-toggle>a {
