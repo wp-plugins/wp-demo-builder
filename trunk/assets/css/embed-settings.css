@@ -17,3 +17,70 @@
 #wpdb-embed-settings .form-group td a.selected {
 	color: orange;
 }
+
+#wpdb-embed-settings .wpdb_hide {
+	display: none !important;
+}
+
+#wpdb-embed-settings .wpdb_selected > img {
+	border: 1px solid #333;
+}
+
+.wpdb-bootstrap .wpdb-iconselector .wpdb-items-list {
+	margin: 0;
+	padding: 5px;
+	height: 250px;
+	border: 1px solid #ccc;
+	height: 200px;
+	margin: 0;
+	overflow-x: hidden;
+	overflow-y: scroll;
+	width: 80%;
+	background-color: #fff;
+}
+
+.wpdb-bootstrap .wpdb-iconselector .wpdb-items-list li.active {
+    background-color: #0088cc !important;
+}
+
+.wpdb-bootstrap .wpdb-iconselector .wpdb-items-list li {
+	border: medium none;
+	float: left;
+	padding: 0;
+	width: 33.3%;
+}
+
+.wpdb-bootstrap .wpdb-items-list .wpdb-item {
+	border: 1px solid rgba(0, 0, 0, 0);
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	list-style: none outside none;
+	margin: 0;
+	padding: 4px 15px 8px;
+	min-height: 38px !important;
+}
+
+.wpdb-bootstrap .wpdb-iconselector .wpdb-items-list li.active a {
+    color: #fff;
+}
+
+.wpdb-bootstrap .wpdb-iconselector .wpdb-items-list li a {
+    color: #333;
+    display: block;
+    margin-top: 3px;
+    overflow: hidden;
+    padding: 8px 12px;
+    white-space: nowrap;
+    text-decoration: none;
+    outline: none;
+}
+
+.wpdb-bootstrap .wpdb-iconselector .wpdb-items-list li a [class^="icon-"] {
+    margin-right: 10px;
+}
+
+.wpdb-bootstrap [class^="icon-"], .wpdb-bootstrap [class*=" icon-"] {
+    background-image: none !important;
+    font-size: 14px;
+}

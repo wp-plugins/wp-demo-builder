@@ -53,7 +53,18 @@ You're done! Now you have a shiny WordPress Demo Builder tool running on your de
 
 For further information, product details, help and tutorials, please visit our website: http://www.wpdemobuilder.com
 
+== Changelog ==
 
+= 1.0.1 =
+* Improve archiving step, make it operate faster on shared hosting 
+* Add the function that allows to select icon for Demo Builder Register Button
+* Add The re-connection function, that allows user re-connect to a Base Site without pushing it up the Demo Builder Server again
+* Update style of the Demo Builder Register Form
+* Add the function that will delete all options of WP Demo Builder plugin when un-installing it
+* Update the style in both pages: Base Site & Settings
+
+= 1.0.0 =
+* First version
 
 
 

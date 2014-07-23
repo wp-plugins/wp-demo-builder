@@ -15,18 +15,7 @@ if ( isset ( $save ) && true === $save ) {
 	$msg  = __( 'Successfully saved settings.', WPDB_TEXT );
 }
 ?>
-
-<style type="text/css">
-.wpdb_hide {
-	display: none !important;
-}
-.wpdb_selected > img {
-	border: 1px solid #333;
-}
-
-</style>
-
-<div id="wpdb-embed-settings" class="wrap">
+<div id="wpdb-embed-settings" class="wrap wpdb-bootstrap">
 	<h2>
 		<?php _e( 'Demo Builder Settings', WPDB_TEXT ); ?>
 	</h2>
@@ -97,6 +86,42 @@ if ( isset ( $save ) && true === $save ) {
 							<input type="radio" name="button_style" class="wpdb_hide" value="light" <?php checked( 'light', $settings['button_style'] ); ?> />
 							<img style="vertical-align: middle;" src="<?php echo site_url() . '/wp-content/plugins/wp-demo-builder/assets/images/styles/option-style-light.png'; ?>" />
 						</label>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row">
+						<label for="button-style"><?php _e( 'Icon', WPDB_TEXT ); ?></label>
+					</th>
+					<td>
+						<div id="icon-selector">
+							<div class="wpdb-iconselector">
+								<ul class="wpdb-items-list">
+								<li class="wpdb-item<?php echo ( (string) $settings['button_icon'] == '' ) ? ' active': ''?>">
+									<a class="icons-item" href="javascript:void(0)" data-value="">
+										<i class="icon-"></i><?php _e( 'None', WPDB_TEXT ); ?>
+									</a>
+								</li>
+							<?php
+								foreach ( $icon_moons as $key => $icon_moon ) {
+									$active = '';
+									if ( $key == (string) $settings['button_icon'] )
+									{
+										$active = " active";
+									}
+
+							?>
+								<li class="wpdb-item<?php echo $active; ?>">
+									<a class="icons-item" href="javascript:void(0)" data-value="<?php echo $key; ?>">
+										<i class="<?php echo $key; ?>"></i><?php echo $icon_moon; ?>
+									</a>
+								</li>
+							<?php
+								}
+							?>
+								</ul>
+							</div>
+						</div>
+						<input type="hidden" id="button-icon-hidden-input" name="button_icon" value="<?php echo esc_attr( $settings['button_icon'] ); ?>" />
 					</td>
 				</tr>
 			</tbody>

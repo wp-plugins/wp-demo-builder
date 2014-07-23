@@ -26,6 +26,7 @@
 					'All files archived successfully.': 'All files archived successfully.',
 					'Base site package creation is canceled by user.': 'Base site package creation is canceled by user.',
 					'Continue': 'Continue',
+					'Reconnect': 'Reconnect',
 					'Cancel': 'Cancel',
 					'processing_icon': '<span class="glyphicon glyphicon-refresh"></span>',
 					'completed_icon': '<span class="glyphicon glyphicon-ok"></span>'
@@ -96,6 +97,24 @@
 					return;
 				}
 
+				// Generate reconnect button
+				reconnect_button = $('<button type="button" class="btn btn-success" />').click(function(event) {
+					event.preventDefault();
+					var base_site_id = form.find('li.thumbnail.selected').find('input[type="radio"]').val();
+					var sentData = {'email': self.authentication.email, 'password': self.authentication.password, 'base_site_id': base_site_id};
+					// Send request to get re-connection
+					$.ProcessingDialog.request({
+						url: self.params.url  + '&state=re_connect' + '&rand=' + self.rand_string,
+						data: sentData,
+						method: 'POST',
+						callback: function(response) {
+
+							
+						}
+					});
+					
+				}).text(self.params.text['Reconnect']).hide();
+				
 				// Generate continue button
 				continue_button = $('<button type="button" class="btn btn-primary" />').click(function(event) {
 					event.preventDefault();
@@ -137,6 +156,7 @@
 						data: self.authentication,
 						method: form.attr('method'),
 						callback: function(response) {
+
 							if (response.substr(0, 1) != '{' || response.substr(-1) != '}') {
 								return init_form(this.element);
 							}
@@ -181,14 +201,25 @@
 							// Mark selection
 							$(this).addClass('selected').find('input[type="radio"]').attr('checked', 'checked');
 
+							if (parseInt($(this).find('input[type="radio"]').val()) > 0)
+							{
+								reconnect_button.show();
+							}	
+							else
+							{
+								reconnect_button.hide();
+							}	
 							// Enable continue button
 							continue_button.removeClass('disabled').removeAttr('disabled');
 						});
 					break;
 				}
 
+				if (form.attr('name') == 'WP_Demo_Builder_Select_Site') {
+					modal.find('.modal-footer').append(reconnect_button);
+				}
+				
 				modal.find('.modal-footer').append(continue_button);
-
 				// Change label for close button
 				modal.find('.modal-footer button[data-dismiss="modal"]').text(self.params.text['Cancel']);
 			};
