@@ -55,6 +55,10 @@ For further information, product details, help and tutorials, please visit our w
 
 == Changelog ==
 
+= 1.0.2 =
+* Fix some minnor bugs
+* Change server's URL
+
 = 1.0.1 =
 * Improve archiving step, make it operate faster on shared hosting 
 * Add the function that allows to select icon for Demo Builder Register Button
