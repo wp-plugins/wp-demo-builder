@@ -56,7 +56,7 @@ For further information, product details, help and tutorials, please visit our w
 == Changelog ==
 
 = 1.0.2 =
-* Fix some minnor bugs
+* Fix some minor bugs
 * Change server's URL
 
 = 1.0.1 =
