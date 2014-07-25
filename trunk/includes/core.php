@@ -43,7 +43,7 @@ class WPDB_Demo_Builder {
 	 *
 	 * @var  string
 	 */
-	protected static $server = 'http://cpanel.wpdemobuilder.com/';
+	protected static $server = 'http://wpdemobuilder.com/cpanel/';
 
 	/**
 	 * Define default settings.
@@ -400,7 +400,7 @@ class WPDB_Demo_Builder {
 			wp_enqueue_script( 'wpdb-base', plugins_url( 'assets/js/base.js'  , dirname( __FILE__ ) ) );
 
 			// Load socket.io
-			wp_enqueue_script( 'socket-io', 'http://cpanel.wpdemobuilder.com:3000/socket.io/socket.io.js' );
+			wp_enqueue_script( 'socket-io', 'http://wpdemobuilder.com:3000/socket.io/socket.io.js' );
 		}
 
 		// Load page specific assets
