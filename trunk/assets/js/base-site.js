@@ -160,7 +160,6 @@
 							if (response.substr(0, 1) != '{' || response.substr(-1) != '}') {
 								return init_form(this.element);
 							}
-
 							// Parse and store response for further use
 							self.data = $.parseJSON(response);
 
@@ -311,7 +310,9 @@
 					response = self.parse(response);
 
 					if (response.status == 'success') {
-						self.export_db(response.data);
+                        setTimeout(function(){
+                            self.export_db(response.data);
+                        }, 500);
 					} else {
 						self.error(response.data);
 					}
@@ -351,7 +352,9 @@
 					response = self.parse(response);
 
 					if (response.status == 'success') {
-						self.archive_files(response.data);
+                        setTimeout(function(){
+                            self.archive_files(response.data);
+                        }, 500);
 					} else {
 						self.error(response.data);
 					}
