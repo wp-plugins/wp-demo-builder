@@ -235,18 +235,12 @@ class WPDB_Demo_Builder {
 	 */
 	public static function init() {
 		// Get global variables
-		global $pagenow, $wp_filesystem;
+		global $pagenow;
 
-		// Get WordPress file system abstraction
-		if ( ! function_exists( 'WP_Filesystem' ) ) {
-			include_once ABSPATH . 'wp-admin/includes/file.php';
-		}
+        require_once(ABSPATH . 'wp-admin/includes/class-wp-filesystem-base.php');
+        require_once(ABSPATH . 'wp-admin/includes/class-wp-filesystem-direct.php');
 
-		if ( ! $wp_filesystem ) {
-			WP_Filesystem();
-		}
-
-		self::$fs = & $wp_filesystem;
+        self::$fs = new WP_Filesystem_Direct(array());
 
 		// Add admin menu
 		add_action( 'admin_menu', array( __CLASS__, 'admin_menu' ) );
@@ -653,7 +647,6 @@ class WPDB_Demo_Builder {
 		if ( empty( $table ) || false === ( $index = array_search( $table, $tables ) ) ) {
 			throw new Exception( __( 'Invalid database table name.', WPDB_TEXT ) );
 		}
-
 		// Export table structure and data
 		$export = array();
 
@@ -1046,6 +1039,7 @@ class WPDB_Demo_Builder {
 	 * @return  void
 	 */
 	protected static function download_package( $file_name = null ) {
+        @ini_set('memory_limit','-1');
 		// Get base site package info
 		$package = self::get_package($file_name);
 
