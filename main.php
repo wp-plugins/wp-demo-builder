@@ -3,7 +3,7 @@
  * Plugin Name: WP Demo Builder
  * Plugin URI:  http://www.wpdemobuilder.com/
  * Description: Create base site package, push it to WP Demo Builder system and display demo builder panel with ease.
- * Version:     1.0.2
+ * Version:     1.0.3
  * Author:      WPDemoBuilder Team <admin@wpdemobuilder.com>
  * Author URI:  http://www.wpdemobuilder.com/
  * License:     GNU/GPL v2 or later http://www.gnu.org/licenses/gpl-2.0.html
