@@ -31,6 +31,7 @@
 	<input type="hidden" name="email" value="<?php echo esc_attr( isset( $_REQUEST['email'] ) ? $_REQUEST['email'] : '' ); ?>" />
 	<input type="hidden" name="password" value="<?php echo esc_attr( isset( $_REQUEST['password'] ) ? $_REQUEST['password'] : '' ); ?>" />
 	<input type="hidden" name="task" value="<?php echo esc_attr( isset( $_REQUEST['task'] ) ? $_REQUEST['task'] : '' ); ?>" />
+    <input type="hidden" name="token" value="<?php echo esc_attr(isset($request->token) ? $request->token : '');?>">
 </form>
 <?php
 // Exit immediately to prevent the plugin from generating and returning JSON status

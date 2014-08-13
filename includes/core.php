@@ -491,12 +491,11 @@ class WPDB_Demo_Builder {
 		// Preset handle
 		$handle = 'login';
 
-		// Get customer email and password to authenticate
-		$email    = isset( $_POST['email'   ] ) ? $_POST['email'   ] : null;
-		$password = isset( $_POST['password'] ) ? $_POST['password'] : null;
-
-		// Get task
-		$task = isset( $_REQUEST['task'] ) ? $_REQUEST['task'] : null;
+            // Get customer email and password to authenticate
+            $email    = isset( $_POST['email'   ] ) ? $_POST['email'   ] : null;
+            $password = isset( $_POST['password'] ) ? $_POST['password'] : null;
+            // Get task
+            $task = isset( $_REQUEST['task'] ) ? $_REQUEST['task'] : null;
 
 		if ( ! empty( $email ) && ! empty( $password ) && ! empty( $task ) ) {
 			// Build query
@@ -504,6 +503,7 @@ class WPDB_Demo_Builder {
 			$query[] = 'password=' . $password;
 			$query[] = 'task='     . $task;
             $query[] = 'remoteurl=' . urlencode(site_url());
+            $query[] = 'version=' . self::get_wpdemobuilder_version();
 
 			if ( isset( $_REQUEST['base_site_id'] ) ) {
 				$query[] = 'base_site_id=' . (int) $_REQUEST['base_site_id'];
@@ -921,21 +921,11 @@ class WPDB_Demo_Builder {
 		// Get base site package info
 		$file = self::get_package($file_name);
 
-		// Generate token key
-		$token = null;
-
-		if ( isset( $_REQUEST['token'] ) ) {
-			$token = $_REQUEST['token'];
-		} elseif ( isset( $_POST['email'] ) && isset( $_POST['password'] ) ) {
-			$token = md5( $_POST['email'] . $_POST['password'] );
-		}
-
-		return array(
-			'url'   => site_url( 'index.php?wp-demo-builder-action=download&rand=' . $rand ),
-			'size'  => $file['size'],
-			'token' => $token,
-		);
-	}
+            return array(
+                'url'   => site_url( 'index.php?wp-demo-builder-action=download&rand=' . $rand ),
+                'size'  => $file['size'],
+            );
+        }
 
 	/**
 	 * Get embed code to render panel to build demo site.
@@ -1137,6 +1127,15 @@ class WPDB_Demo_Builder {
 		$return = array( 'result' => 'false', 'response' => '', 'message' => __( 'Invalid parameters.', WPDB_TEXT ) );
 		exit( json_encode( $return ) );
 	}
+
+    /**
+     * Get wpdemobuilder plugin version
+     */
+    static function get_wpdemobuilder_version() {
+        $plugin_data = get_plugin_data( dirname( dirname( __FILE__ ) ). '/main.php' );
+        $plugin_version = $plugin_data['Version'];
+        return $plugin_version;
+    }
 }
 
 endif;
