@@ -55,6 +55,9 @@ For further information, product details, help and tutorials, please visit our w
 
 == Changelog ==
 
+= 1.1.0 =
+* Update the style
+
 = 1.0.3 =
 * Fix bug that causes invalid token and hang uploading process on multiple-threaded upload
 * Fix bug that causes PHP memory limit error
