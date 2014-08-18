@@ -1,0 +1,466 @@
+@font-face {
+	font-family: 'IcoMoon';
+	src: url('../fonts/IcoMoon.eot');
+	src: url('../fonts/IcoMoon.eot?#iefix') format('embedded-opentype'),
+		url('../fonts/IcoMoon.svg#IcoMoon') format('svg'),
+		url('../fonts/IcoMoon.woff') format('woff'),
+		url('../fonts/IcoMoon.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+.wpdb-bootstrap [data-icon]:before {
+	font-family: 'IcoMoon';
+	content: attr(data-icon);
+	speak: none;
+}
+.wpdb-bootstrap [class^="icon-"],
+.wpdb-bootstrap [class*=" icon-"] {
+	display: inline-block;
+	width: 14px;
+	height: 14px;
+	*margin-right: .3em;
+	line-height: 14px;
+}
+.wpdb-bootstrap [class^="icon-"]:before,
+.wpdb-bootstrap [class*=" icon-"]:before {
+	font-family: 'IcoMoon';
+	font-style: normal;
+	speak: none;
+}
+.wpdb-bootstrap [class^="icon-"].disabled,
+.wpdb-bootstrap [class*=" icon-"].disabled {
+	font-weight: normal;
+}
+.wpdb-bootstrap .icon-home:before {
+	content: "\21";
+}
+.wpdb-bootstrap .icon-user:before {
+	content: "\22";
+}
+.wpdb-bootstrap .icon-checkedout:before,
+.wpdb-bootstrap .icon-lock:before,
+.wpdb-bootstrap .icon-locked:before {
+	content: "\23";
+}
+.wpdb-bootstrap .icon-comment:before,
+.wpdb-bootstrap .icon-comments:before {
+	content: "\24";
+}
+.wpdb-bootstrap .icon-comments-2:before {
+	content: "\25";
+}
+.wpdb-bootstrap .icon-share-alt:before,
+.wpdb-bootstrap .icon-out:before {
+	content: "\26";
+}
+.wpdb-bootstrap .icon-share:before,
+.wpdb-bootstrap .icon-redo:before {
+	content: "\27";
+}
+.wpdb-bootstrap .icon-undo:before {
+	content: "\28";
+}
+.wpdb-bootstrap .icon-file-add:before {
+	content: "\29";
+}
+.wpdb-bootstrap .icon-new:before,
+.wpdb-bootstrap .icon-plus:before {
+	content: "\2a";
+}
+.wpdb-bootstrap .icon-apply:before,
+.wpdb-bootstrap .icon-edit:before,
+.wpdb-bootstrap .icon-pencil:before {
+	content: "\2b";
+}
+.wpdb-bootstrap .icon-pencil-2:before {
+	content: "\2c";
+}
+.wpdb-bootstrap .icon-folder-open:before,
+.wpdb-bootstrap .icon-folder:before {
+	content: "\2d";
+}
+.wpdb-bootstrap .icon-folder-close:before,
+.wpdb-bootstrap .icon-folder-2:before {
+	content: "\2e";
+}
+.wpdb-bootstrap .icon-picture:before {
+	content: "\2f";
+}
+.wpdb-bootstrap .icon-pictures:before {
+	content: "\30";
+}
+.wpdb-bootstrap .icon-list:before,
+.wpdb-bootstrap .icon-list-view:before {
+	content: "\31";
+}
+.wpdb-bootstrap .icon-power-cord:before {
+	content: "\32";
+}
+.wpdb-bootstrap .icon-cube:before {
+	content: "\33";
+}
+.wpdb-bootstrap .icon-puzzle:before {
+	content: "\34";
+}
+.wpdb-bootstrap .icon-flag:before {
+	content: "\35";
+}
+.wpdb-bootstrap .icon-tools:before {
+	content: "\36";
+}
+.wpdb-bootstrap .icon-cogs:before {
+	content: "\37";
+}
+.wpdb-bootstrap .icon-options:before,
+.wpdb-bootstrap .icon-cog:before {
+	content: "\38";
+}
+.wpdb-bootstrap .icon-equalizer:before {
+	content: "\39";
+}
+.wpdb-bootstrap .icon-wrench:before {
+	content: "\3a";
+}
+.wpdb-bootstrap .icon-brush:before {
+	content: "\3b";
+}
+.wpdb-bootstrap .icon-eye-open:before,
+.wpdb-bootstrap .icon-eye:before {
+	content: "\3c";
+}
+.wpdb-bootstrap .icon-checkbox-unchecked:before {
+	content: "\3d";
+}
+.wpdb-bootstrap .icon-checkin:before,
+.wpdb-bootstrap .icon-checkbox:before {
+	content: "\3e";
+}
+.wpdb-bootstrap .icon-checkbox-partial:before {
+	content: "\3f";
+}
+.wpdb-bootstrap .icon-asterisk:before,
+.wpdb-bootstrap .icon-star-empty:before {
+	content: "\40";
+}
+.wpdb-bootstrap .icon-star-2:before {
+	content: "\41";
+}
+.wpdb-bootstrap .icon-featured:before,
+.wpdb-bootstrap .icon-star:before {
+	content: "\42";
+}
+.wpdb-bootstrap .icon-calendar:before {
+	content: "\43";
+}
+.wpdb-bootstrap .icon-calendar-2:before {
+	content: "\44";
+}
+.wpdb-bootstrap .icon-question-sign:before,
+.wpdb-bootstrap .icon-help:before {
+	content: "\45";
+}
+.wpdb-bootstrap .icon-support:before {
+	content: "\46";
+}
+.wpdb-bootstrap .icon-pending:before,
+.wpdb-bootstrap .icon-warning:before {
+	content: "\48";
+}
+.wpdb-bootstrap .icon-publish:before,
+.wpdb-bootstrap .icon-save:before,
+.wpdb-bootstrap .icon-ok:before,
+.wpdb-bootstrap .icon-checkmark:before {
+	content: "\47";
+}
+.wpdb-bootstrap .icon-unpublish:before,
+.wpdb-bootstrap .icon-cancel:before {
+	content: "\4a";
+}
+.wpdb-bootstrap .icon-eye-close:before,
+.wpdb-bootstrap .icon-minus:before {
+	content: "\4b";
+}
+.wpdb-bootstrap .icon-purge:before,
+.wpdb-bootstrap .icon-trash:before {
+	content: "\4c";
+}
+.wpdb-bootstrap .icon-envelope:before,
+.wpdb-bootstrap .icon-mail:before {
+	content: "\4d";
+}
+.wpdb-bootstrap .icon-mail-2:before {
+	content: "\4e";
+}
+.wpdb-bootstrap .icon-unarchive:before,
+.wpdb-bootstrap .icon-drawer:before {
+	content: "\4f";
+}
+.wpdb-bootstrap .icon-archive:before,
+.wpdb-bootstrap .icon-drawer-2:before {
+	content: "\50";
+}
+.wpdb-bootstrap .icon-box-add:before {
+	content: "\51";
+}
+.wpdb-bootstrap .icon-box-remove:before {
+	content: "\52";
+}
+.wpdb-bootstrap .icon-search:before {
+	content: "\53";
+}
+.wpdb-bootstrap .icon-filter:before {
+	content: "\54";
+}
+.wpdb-bootstrap .icon-camera:before {
+	content: "\55";
+}
+.wpdb-bootstrap .icon-play:before {
+	content: "\56";
+}
+.wpdb-bootstrap .icon-music:before {
+	content: "\57";
+}
+.wpdb-bootstrap .icon-grid-view:before {
+	content: "\58";
+}
+.wpdb-bootstrap .icon-grid-view-2:before {
+	content: "\59";
+}
+.wpdb-bootstrap .icon-menu:before {
+	content: "\5a";
+}
+.wpdb-bootstrap .icon-thumbs-up:before {
+	content: "\5b";
+}
+.wpdb-bootstrap .icon-thumbs-down:before {
+	content: "\5c";
+}
+.wpdb-bootstrap .icon-delete:before,
+.wpdb-bootstrap .icon-remove:before,
+.wpdb-bootstrap .icon-cancel-2:before {
+	content: "\49";
+}
+.wpdb-bootstrap .icon-save-new:before,
+.wpdb-bootstrap .icon-plus-2:before {
+	content: "\5d";
+}
+.wpdb-bootstrap .icon-ban-circle:before,
+.wpdb-bootstrap .icon-minus-sign:before,
+.wpdb-bootstrap .icon-minus-2:before {
+	content: "\5e";
+}
+.wpdb-bootstrap .icon-key:before {
+	content: "\5f";
+}
+.wpdb-bootstrap .icon-quote:before {
+	content: "\60";
+}
+.wpdb-bootstrap .icon-quote-2:before {
+	content: "\61";
+}
+.wpdb-bootstrap .icon-database:before {
+	content: "\62";
+}
+.wpdb-bootstrap .icon-location:before {
+	content: "\63";
+}
+.wpdb-bootstrap .icon-zoom-in:before {
+	content: "\64";
+}
+.wpdb-bootstrap .icon-zoom-out:before {
+	content: "\65";
+}
+.wpdb-bootstrap .icon-expand:before {
+	content: "\66";
+}
+.wpdb-bootstrap .icon-contract:before {
+	content: "\67";
+}
+.wpdb-bootstrap .icon-expand-2:before {
+	content: "\68";
+}
+.wpdb-bootstrap .icon-contract-2:before {
+	content: "\69";
+}
+.wpdb-bootstrap .icon-health:before {
+	content: "\6a";
+}
+.wpdb-bootstrap .icon-wand:before {
+	content: "\6b";
+}
+.wpdb-bootstrap .icon-unblock:before,
+.wpdb-bootstrap .icon-refresh:before {
+	content: "\6c";
+}
+.wpdb-bootstrap .icon-vcard:before {
+	content: "\6d";
+}
+.wpdb-bootstrap .icon-clock:before {
+	content: "\6e";
+}
+.wpdb-bootstrap .icon-compass:before {
+	content: "\6f";
+}
+.wpdb-bootstrap .icon-address:before {
+	content: "\70";
+}
+.wpdb-bootstrap .icon-feed:before {
+	content: "\71";
+}
+.wpdb-bootstrap .icon-flag-2:before {
+	content: "\72";
+}
+.wpdb-bootstrap .icon-pin:before {
+	content: "\73";
+}
+.wpdb-bootstrap .icon-lamp:before {
+	content: "\74";
+}
+.wpdb-bootstrap .icon-chart:before {
+	content: "\75";
+}
+.wpdb-bootstrap .icon-bars:before {
+	content: "\76";
+}
+.wpdb-bootstrap .icon-pie:before {
+	content: "\77";
+}
+.wpdb-bootstrap .icon-dashboard:before {
+	content: "\78";
+}
+.wpdb-bootstrap .icon-lightning:before {
+	content: "\79";
+}
+.wpdb-bootstrap .icon-move:before {
+	content: "\7a";
+}
+.wpdb-bootstrap .icon-next:before {
+	content: "\7b";
+}
+.wpdb-bootstrap .icon-previous:before {
+	content: "\7c";
+}
+.wpdb-bootstrap .icon-first:before {
+	content: "\7d";
+}
+.wpdb-bootstrap .icon-last:before {
+	content: "\e000";
+}
+.wpdb-bootstrap .icon-loop:before {
+	content: "\e001";
+}
+.wpdb-bootstrap .icon-shuffle:before {
+	content: "\e002";
+}
+.wpdb-bootstrap .icon-arrow-first:before {
+	content: "\e003";
+}
+.wpdb-bootstrap .icon-arrow-last:before {
+	content: "\e004";
+}
+.wpdb-bootstrap .icon-chevron-up:before,
+.wpdb-bootstrap .icon-uparrow:before,
+.wpdb-bootstrap .icon-arrow-up:before {
+	content: "\e005";
+}
+.wpdb-bootstrap .icon-chevron-right:before,
+.wpdb-bootstrap .icon-arrow-right:before {
+	content: "\e006";
+}
+.wpdb-bootstrap .icon-chevron-down:before,
+.wpdb-bootstrap .icon-downarrow:before,
+.wpdb-bootstrap .icon-arrow-down:before {
+	content: "\e007";
+}
+.wpdb-bootstrap .icon-chevron-left:before,
+.wpdb-bootstrap .icon-arrow-left:before {
+	content: "\e008";
+}
+.wpdb-bootstrap .icon-arrow-up-2:before {
+	content: "\e009";
+}
+.wpdb-bootstrap .icon-arrow-right-2:before {
+	content: "\e00a";
+}
+.wpdb-bootstrap .icon-download:before,
+.wpdb-bootstrap .icon-arrow-down-2:before {
+	content: "\e00b";
+}
+.wpdb-bootstrap .icon-arrow-left-2:before {
+	content: "\e00c";
+}
+.wpdb-bootstrap .icon-play-2:before {
+	content: "\e00d";
+}
+.wpdb-bootstrap .icon-menu-2:before {
+	content: "\e00e";
+}
+.wpdb-bootstrap .icon-arrow-up-3:before {
+	content: "\e00f";
+}
+.wpdb-bootstrap .icon-arrow-right-3:before {
+	content: "\e010";
+}
+.wpdb-bootstrap .icon-arrow-down-3:before {
+	content: "\e011";
+}
+.wpdb-bootstrap .icon-arrow-left-3:before {
+	content: "\e012";
+}
+.wpdb-bootstrap .icon-print:before,
+.wpdb-bootstrap .icon-printer:before {
+	content: "\e013";
+}
+.wpdb-bootstrap .icon-color-palette:before {
+	content: "\e014";
+}
+.wpdb-bootstrap .icon-camera-2:before {
+	content: "\e015";
+}
+.wpdb-bootstrap .icon-file:before {
+	content: "\e016";
+}
+.wpdb-bootstrap .icon-file-remove:before {
+	content: "\e017";
+}
+.wpdb-bootstrap .icon-save-copy:before,
+.wpdb-bootstrap .icon-copy:before {
+	content: "\e018";
+}
+.wpdb-bootstrap .icon-cart:before {
+	content: "\e019";
+}
+.wpdb-bootstrap .icon-basket:before {
+	content: "\e01a";
+}
+.wpdb-bootstrap .icon-broadcast:before {
+	content: "\e01b";
+}
+.wpdb-bootstrap .icon-screen:before {
+	content: "\e01c";
+}
+.wpdb-bootstrap .icon-tablet:before {
+	content: "\e01d";
+}
+.wpdb-bootstrap .icon-mobile:before {
+	content: "\e01e";
+}
+.wpdb-bootstrap .icon-users:before {
+	content: "\e01f";
+}
+.wpdb-bootstrap .icon-briefcase:before {
+	content: "\e020";
+}
+.wpdb-bootstrap .icon-download:before {
+	content: "\e021";
+}
+.wpdb-bootstrap .icon-upload:before {
+	content: "\e022";
+}
+.wpdb-bootstrap .icon-bookmark:before {
+	content: "\e023";
+}
+.wpdb-bootstrap .icon-out-2:before {
+	content: "\e024";
+}
