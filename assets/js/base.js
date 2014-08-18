@@ -57,16 +57,20 @@
 		});
 	};
 	
+	// Hide wordpress error messages
+	$(".settings-error").hide();
+	
 }(jQuery);
 
 (function($) {
 	// Helper functions for generate processing dialog, send request via Ajax with processing dialog, show error message if request fails
 	$.ProcessingDialog = {
-		html: '<div class="modal fade" id="please-wait-dialog" tabindex="-1" role="dialog" aria-labelledby="modal-label" aria-hidden="true" data-backdrop="static" data-keyboard="false"><div class="modal-dialog"><div class="modal-content"><div class="modal-body"><div class="progress progress-striped active"><div class="progress-bar" role="progressbar" style="width: 100%"></div></div><div class="content hide"></div></div><div class="modal-footer hide"><button type="button" class="btn btn-default" data-dismiss="modal">Close</button></div></div></div></div>',
+		html: '<div class="modal fade" id="please-wait-dialog" tabindex="-1" role="dialog" aria-labelledby="modal-label" aria-hidden="true" data-backdrop="static" data-keyboard="false"><div class="modal-dialog"><div class="modal-content"><div class="modal-header hide"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><h4 class="modal-title">Modal title</h4></div><div class="modal-body"><div class="progress progress-striped active"><div class="progress-bar" role="progressbar" style="width: 100%"></div></div><div class="content hide"></div></div><div class="modal-footer hide"><button type="button" class="btn btn-default" data-dismiss="modal">Close</button></div></div></div></div>',
 
 		show: function(params) {
 			var params = $.extend({
 				timeout: 0,
+				title: null,
 				content: null,
 				callback: null,
 				modal_class: null,
@@ -80,7 +84,11 @@
 
 			// Instantiate modal
 			this.element = $(this.html);
-
+			
+			if (params.title) {
+				this.element.find(".modal-header").removeClass("hide").children(".modal-title").text(params.title);
+			}
+			
 			if (params.content) {
 				// If content has Javascript code, allow some timeout for script execution completes
 				if (params.content.match(/<script[^>]*>/) && params.timeout == 0) {
