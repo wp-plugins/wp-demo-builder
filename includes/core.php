@@ -204,10 +204,10 @@ class WPDB_Demo_Builder {
 		return $qvars;
 	}
 
-	/**
+	/*
 	 * Check extra query variable.
 	 *
-	 * @param   object  $wp_query  WordPress query object.
+	 * @param   object $wp_query WordPress query object.
 	 *
 	 * @return  void
 	 */

@@ -26,7 +26,7 @@
 		<button id="cancel-process" class="btn btn-danger btn-lg hide"><?php _e( 'Cancel', WPDB_TEXT ); ?></button>
 		<button id="manage-base-site" class="btn btn-primary btn-lg hide"><?php _e( 'Manage Base Site', WPDB_TEXT ); ?></button>
 		<a id="config-embed-code" class="btn btn-default btn-lg hide" href="<?php echo esc_url( admin_url( 'admin.php?page=wpdb-embed-settings' ) ); ?>">
-			<?php _e( 'Configure Embed Code', WPDB_TEXT ); ?>
+			<?php _e( 'Configuration', WPDB_TEXT ); ?>
 		</a>
 
 		<!--
