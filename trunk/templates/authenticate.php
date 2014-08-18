@@ -10,13 +10,12 @@
  */
 ?>
 <form name="WP_Demo_Builder_Authentication" action="<?php echo esc_url( admin_url( 'admin-ajax.php?action=wp-demo-builder&state=authenticate' ) ); ?>" method="POST" class="form-horizontal" autocomplete="off">
+	<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+	<h4 class="modal-title"><?php _e( "Input WPDemoBuilder account", WPDB_TEXT )?></h4>
+	<hr>
 	<?php if ( isset( $error ) ) : ?>
 	<div class="alert alert-danger">
 		<?php echo '' . $error; ?>
-	</div>
-	<?php else : ?>
-	<div class="alert alert-info">
-		<?php _e( 'Please enter your WP Demo Builder account to authenticate with WP Demo Builder server.', WPDB_TEXT ); ?>
 	</div>
 	<?php endif; ?>
 	<div class="form-group clearfix">
@@ -31,15 +30,5 @@
 			<input type="password" value="" class="form-control" id="password" name="password" autocomplete="off" />
 		</div>
 	</div>
-	<!-- div class="form-group clearfix">
-		<div class="col-sm-9 pull-right">
-			<div class="checkbox-inline">
-				<label>
-					<input type="checkbox" value="1" id="remember" name="remember" autocomplete="off" />
-					<?php _e( 'Remember Me', WPDB_TEXT ); ?>
-				</label>
-			</div>
-		</div>
-	</div -->
 	<input type="hidden" name="task" value="<?php echo esc_attr( isset( $_REQUEST['task'] ) ? $_REQUEST['task'] : '' ); ?>" />
 </form>

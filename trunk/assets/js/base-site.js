@@ -227,14 +227,15 @@
 				return init_form(modal);
 			}
 
-			// Get authentication form
-			$.ProcessingDialog.request({
-				url: self.params.url + '&state=authenticate&task=' + task,
-				callback: function() {
-					init_form(this.element);
-				}
-			});
-		},
+            // Get authentication form
+            $.ProcessingDialog.request({
+				title: "Input WPDemoBuilder account",
+                url: self.params.url + '&state=authenticate&task=' + task,
+                callback: function() {
+                    init_form(this.element);
+                }
+            });
+        },
 
 		create_site_package: function(prepare_file) {
 			var self = this;
