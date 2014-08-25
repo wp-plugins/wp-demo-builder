@@ -280,4 +280,31 @@
 			}, this), timeout);
 		},
 	};
+    $.Notification = {
+        init: function() {
+            if (this._initiated)
+                return;
+            var self = this;
+
+            self.params = {
+                style: "warning",
+                icon: "<i class='glyphicon glyphicon-exclamation-sign'>",
+                message: "",
+            }
+            self.element = $("#notification-wrapper");
+
+            this._initiated = true;
+
+        },
+        show: function(params) {
+            var self = this;
+            if (typeof params === "string")
+                params = { message: params }
+            var params = $.extend({}, this.params, params);
+            var $el = $("<div class='alert alert-"+params.style+"'>")
+                .append(params.message);
+            self.element.html($el);
+        }
+    }
+    $.Notification.init();
 })(jQuery);

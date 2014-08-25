@@ -55,6 +55,11 @@ For further information, product details, help and tutorials, please visit our w
 
 == Changelog ==
 
+= 1.2.0 =
+* Improve alert system of message, includes: Warning, Error ...
+* Support multisite
+* Update CSS Style
+
 = 1.1.0 =
 * Update the style
 

@@ -12,7 +12,7 @@
 <div id="wp-demo-builder" class="wrap" style='font-family: "Titillium Web"'>
 	<div class="container-fluid text-center">
 		<?php if ( !$isWriableUploadsDir ) { ?>
-		<div class="alert alert-warning" role="alert"><?php printf( __('Folder <strong>%s</strong> is Unwritable. Please set Writable permission for it before performing any operations', WPDB_TEXT ), $path['basedir'] ); ?></div>
+		<div id="writable-warning" class="alert alert-warning" role="alert"><?php printf( __('Folder <strong>%s</strong> is Unwritable. Please set Writable permission for it before performing any operations', WPDB_TEXT ), $apppath ); ?></div>
 		<?php } ?>
 		<h1><?php _e( 'Great! Just one last step.', WPDB_TEXT ); ?></h1>
 		<hr>
@@ -24,7 +24,8 @@
 			<span id="push-package-progress" class="ui-circle-progress-bar" label="3. Transmit Package"></span>
 			<span id="extract-package-progress" class="ui-circle-progress-bar" label="4. Process Package"></span>
 		</div>
-		<button id="create-site-package" class="btn btn-primary btn-lg"<?php echo (!$isWriableUploadsDir) ? ' disabled="disabled" ' : '';?>><?php _e( 'Start', WPDB_TEXT ); ?></button>
+        <div id="notification-wrapper" style="width: 50%;text-align: center;"></div>
+		<button id="create-site-package" class="btn btn-primary btn-lg" ><?php _e( 'Start', WPDB_TEXT ); ?></button>
 		<button id="cancel-process" class="btn btn-danger btn-lg hide"><?php _e( 'Cancel', WPDB_TEXT ); ?></button>
 		<button id="manage-base-site" class="btn btn-primary btn-lg hide"><?php _e( 'Manage Base Site', WPDB_TEXT ); ?></button>
 		<a id="config-embed-code" class="btn btn-default btn-lg hide" href="<?php echo esc_url( admin_url( 'admin.php?page=wpdb-embed-settings' ) ); ?>">
@@ -49,8 +50,14 @@
 					'Continue': '<?php _e( 'Continue', WPDB_TEXT ); ?>',
 					'Cancel': '<?php _e( 'Cancel', WPDB_TEXT ); ?>',
 				},
-                site_url : '<?php echo site_url();?>'
+                site_url : '<?php echo site_url();?>',
+                isWriableUploadsDir : <?php if( !$isWriableUploadsDir ) { ?> false <?php } else { ?> true <?php } ?>,
+                multisite : <?php if( !$multisiteEnabled ) { ?> false <?php } else { ?> true <?php } ?>,
+                blog_id : '<?php echo get_current_blog_id();?>'
 			});
 		});
 	})(jQuery);
 </script>
+<?php if( $multisiteEnabled ) :?>
+    
+<?php endif;?>

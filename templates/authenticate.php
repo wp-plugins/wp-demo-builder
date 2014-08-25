@@ -14,7 +14,7 @@
 	<h4 class="modal-title"><?php _e( "Input WPDemoBuilder account", WPDB_TEXT )?></h4>
 	<hr>
 	<?php if ( isset( $error ) ) : ?>
-	<div class="alert alert-danger">
+	<div class="alert alert-danger text-center">
 		<?php echo '' . $error; ?>
 	</div>
 	<?php endif; ?>

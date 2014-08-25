@@ -13,19 +13,26 @@
 	<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
 	<h4 class="modal-title"><?php _e( "Select an action for this base site", WPDB_TEXT )?></h4>
 	<hr>
+    <?php if(isset($request->validate)):?>
+        <?php $validate = (array) $request->validate;?>
+        <?php if($validate['type'] == 'danger'):?>
+            <div class="alert alert-danger text-center" role="alert"><?php echo $validate['message']?></div>
+        <?php endif;?>
+    <?php endif;?>
 	<ul class="thumbnails clearfix">
 		<?php foreach ( (array) $request->response as $id => $data ) : ?>
-		<li class="thumbnail pull-left">
-			<div class="site-thumbnail <?php echo sanitize_html_class( $data->label ); ?>">
-				<?php if ( ! empty( $data->thumb ) ) : ?>
-				<img alt="<?php _e( $data->label ); ?>" src="<?php echo esc_url( $data->thumb ); ?>" />
-				<?php endif; ?>
-			</div>
-			<div class="caption">
-				<label><?php _e( $data->label ); ?></label>
-			</div>
-			<input type="radio" name="base_site_id" value="<?php echo esc_attr( $id ); ?>" class="hide" autocomplete="off" />
-		</li>
+            <li class="thumbnail pull-left">
+                <div class="site-thumbnail <?php echo sanitize_html_class( $data->label ); ?>">
+                    <?php if ( ! empty( $data->thumb ) ) : ?>
+                        <img alt="<?php _e( $data->label ); ?>" src="<?php echo esc_url( $data->thumb ); ?>" />
+                    <?php endif; ?>
+                </div>
+                <div class="caption">
+                    <label><?php _e( $data->label ); ?></label>
+                </div>
+                <input type="radio" name="base_site_id" value="<?php echo esc_attr( $id ); ?>" class="hide" autocomplete="off" />
+                <input type="radio" name="site_code" value="<?php echo esc_attr( $data->code ); ?>" class="hide" autocomplete="off" />
+            </li>
 		<?php endforeach; ?>
 	</ul>
 	<input type="hidden" name="email" value="<?php echo esc_attr( isset( $_REQUEST['email'] ) ? $_REQUEST['email'] : '' ); ?>" />

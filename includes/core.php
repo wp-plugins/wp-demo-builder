@@ -67,63 +67,72 @@ class WPDB_Demo_Builder {
         'timeout'     => 60,
     );
 
-    /**
-     * Define icons for demo buider register button.
-     *
-     * @var  array
-     */
-    protected static $ico_moon = array("icon-home" => "home", "icon-user" => "user", "icon-locked" => "locked",
-    		"icon-comments" => "comments", "icon-comments-2" => "comments-2", "icon-out" => "out",
-    		"icon-redo" => "redo", "icon-undo" => "undo", "icon-file-add" => "file-add",
-    		"icon-plus" => "plus", "icon-pencil" => "pencil", "icon-pencil-2" => "pencil-2",
-    		"icon-folder" => "folder", "icon-folder-2" => "folder-2", "icon-picture" => "picture",
-    		"icon-pictures" => "pictures", "icon-list-view" => "list-view", "icon-power-cord" => "power-cord",
-    		"icon-cube" => "cube", "icon-puzzle" => "puzzle", "icon-flag" => "flag",
-    		"icon-tools" => "tools", "icon-cogs" => "cogs", "icon-cog" => "cog",
-    		"icon-equalizer" => "equalizer", "icon-wrench" => "wrench", "icon-brush" => "brush",
-    		"icon-eye" => "eye", "icon-checkbox-unchecked" => "checkbox-unchecked", "icon-checkbox" => "checkbox",
-    		"icon-checkbox-partial" => "checkbox-partial", "icon-star" => "star", "icon-star-2" => "star-2",
-    		"icon-star-empty" => "star-empty", "icon-calendar" => "calendar", "icon-calendar-2" => "calendar-2",
-    		"icon-help" => "help", "icon-support" => "support", "icon-warning" => "warning",
-    		"icon-checkmark" => "checkmark", "icon-cancel" => "cancel", "icon-minus" => "minus",
-    		"icon-remove" => "remove", "icon-mail" => "mail", "icon-mail-2" => "mail-2",
-    		"icon-drawer" => "drawer", "icon-drawer-2" => "drawer-2", "icon-box-add" => "box-add",
-    		"icon-box-remove" => "box-remove", "icon-search" => "search", "icon-filter" => "filter",
-    		"icon-camera" => "camera", "icon-play" => "play", "icon-music" => "music",
-    		"icon-grid-view" => "grid-view", "icon-grid-view-2" => "grid-view-2", "icon-menu" => "menu",
-    		"icon-thumbs-up" => "thumbs-up", "icon-thumbs-down" => "thumbs-down", "icon-cancel-2" => "cancel-2",
-    		"icon-plus-2" => "plus-2", "icon-minus-2" => "minus-2", "icon-key" => "key",
-    		"icon-quote" => "quote", "icon-quote-2" => "quote-2", "icon-database" => "database",
-    		"icon-location" => "location", "icon-zoom-in" => "zoom-in", "icon-zoom-out" => "zoom-out",
-    		"icon-expand" => "expand", "icon-contract" => "contract", "icon-expand-2" => "expand-2",
-    		"icon-contract-2" => "contract-2", "icon-health" => "health", "icon-wand" => "wand",
-    		"icon-refresh" => "refresh", "icon-vcard" => "vcard", "icon-clock" => "clock",
-    		"icon-compass" => "compass", "icon-address" => "address", "icon-feed" => "feed",
-    		"icon-flag-2" => "flag-2", "icon-pin" => "pin", "icon-lamp" => "lamp",
-    		"icon-chart" => "chart", "icon-bars" => "bars", "icon-pie" => "pie",
-    		"icon-dashboard" => "dashboard", "icon-lightning" => "lightning",
-    		"icon-move" => "move", "icon-next" => "next", "icon-previous" => "previous",
-    		"icon-first" => "first", "icon-last" => "last", "icon-loop" => "loop",
-    		"icon-shuffle" => "shuffle", "icon-arrow-first" => "arrow-first", "icon-arrow-last" => "arrow-last",
-    		"icon-arrow-up" => "arrow-up", "icon-arrow-right" => "arrow-right", "icon-arrow-down" => "arrow-down",
-    		"icon-arrow-left" => "arrow-left", "icon-arrow-up-2" => "arrow-up-2", "icon-arrow-right-2" => "arrow-right-2",
-    		"icon-arrow-down-2" => "arrow-down-2", "icon-arrow-left-2" => "arrow-left-2", "icon-play-2" => "play-2",
-    		"icon-menu-2" => "menu-2", "icon-arrow-up-3" => "arrow-up-3", "icon-arrow-right-3" => "arrow-right-3",
-    		"icon-arrow-down-3" => "arrow-down-3", "icon-arrow-left-3" => "arrow-left-3", "icon-printer" => "printer",
-    		"icon-color-palette" => "color-palette", "icon-camera-2" => "camera-2", "icon-file" => "file",
-    		"icon-file-remove" => "file-remove", "icon-copy" => "copy", "icon-cart" => "cart",
-    		"icon-basket" => "basket", "icon-broadcast" => "broadcast", "icon-screen" => "screen",
-    		"icon-tablet" => "tablet", "icon-mobile" => "mobile", "icon-users" => "users",
-    		"icon-briefcase" => "briefcase", "icon-download" => "download", "icon-upload" => "upload",
-    		"icon-bookmark" => "bookmark", "icon-out-2" => "out-2" );
-	/**
-	 * Hook into WordPress.
-	 *
-	 * @return  void
-	 */
-	public static function hook() {
-		// Register plugin activation action
-		register_activation_hook( WPDB_PLUGIN, array( __CLASS__, 'check_localhost' ) );
+        protected static $multisites_extra_tables = array(
+            'blogs',
+            'blog_versions',
+            'registration_log',
+            'signups',
+            'site',
+            'sitemeta',
+            'sitecategories'
+        );
+        /**
+         * Define icons for demo buider register button.
+         *
+         * @var  array
+         */
+        protected static $ico_moon = array("icon-home" => "home", "icon-user" => "user", "icon-locked" => "locked",
+            "icon-comments" => "comments", "icon-comments-2" => "comments-2", "icon-out" => "out",
+            "icon-redo" => "redo", "icon-undo" => "undo", "icon-file-add" => "file-add",
+            "icon-plus" => "plus", "icon-pencil" => "pencil", "icon-pencil-2" => "pencil-2",
+            "icon-folder" => "folder", "icon-folder-2" => "folder-2", "icon-picture" => "picture",
+            "icon-pictures" => "pictures", "icon-list-view" => "list-view", "icon-power-cord" => "power-cord",
+            "icon-cube" => "cube", "icon-puzzle" => "puzzle", "icon-flag" => "flag",
+            "icon-tools" => "tools", "icon-cogs" => "cogs", "icon-cog" => "cog",
+            "icon-equalizer" => "equalizer", "icon-wrench" => "wrench", "icon-brush" => "brush",
+            "icon-eye" => "eye", "icon-checkbox-unchecked" => "checkbox-unchecked", "icon-checkbox" => "checkbox",
+            "icon-checkbox-partial" => "checkbox-partial", "icon-star" => "star", "icon-star-2" => "star-2",
+            "icon-star-empty" => "star-empty", "icon-calendar" => "calendar", "icon-calendar-2" => "calendar-2",
+            "icon-help" => "help", "icon-support" => "support", "icon-warning" => "warning",
+            "icon-checkmark" => "checkmark", "icon-cancel" => "cancel", "icon-minus" => "minus",
+            "icon-remove" => "remove", "icon-mail" => "mail", "icon-mail-2" => "mail-2",
+            "icon-drawer" => "drawer", "icon-drawer-2" => "drawer-2", "icon-box-add" => "box-add",
+            "icon-box-remove" => "box-remove", "icon-search" => "search", "icon-filter" => "filter",
+            "icon-camera" => "camera", "icon-play" => "play", "icon-music" => "music",
+            "icon-grid-view" => "grid-view", "icon-grid-view-2" => "grid-view-2", "icon-menu" => "menu",
+            "icon-thumbs-up" => "thumbs-up", "icon-thumbs-down" => "thumbs-down", "icon-cancel-2" => "cancel-2",
+            "icon-plus-2" => "plus-2", "icon-minus-2" => "minus-2", "icon-key" => "key",
+            "icon-quote" => "quote", "icon-quote-2" => "quote-2", "icon-database" => "database",
+            "icon-location" => "location", "icon-zoom-in" => "zoom-in", "icon-zoom-out" => "zoom-out",
+            "icon-expand" => "expand", "icon-contract" => "contract", "icon-expand-2" => "expand-2",
+            "icon-contract-2" => "contract-2", "icon-health" => "health", "icon-wand" => "wand",
+            "icon-refresh" => "refresh", "icon-vcard" => "vcard", "icon-clock" => "clock",
+            "icon-compass" => "compass", "icon-address" => "address", "icon-feed" => "feed",
+            "icon-flag-2" => "flag-2", "icon-pin" => "pin", "icon-lamp" => "lamp",
+            "icon-chart" => "chart", "icon-bars" => "bars", "icon-pie" => "pie",
+            "icon-dashboard" => "dashboard", "icon-lightning" => "lightning",
+            "icon-move" => "move", "icon-next" => "next", "icon-previous" => "previous",
+            "icon-first" => "first", "icon-last" => "last", "icon-loop" => "loop",
+            "icon-shuffle" => "shuffle", "icon-arrow-first" => "arrow-first", "icon-arrow-last" => "arrow-last",
+            "icon-arrow-up" => "arrow-up", "icon-arrow-right" => "arrow-right", "icon-arrow-down" => "arrow-down",
+            "icon-arrow-left" => "arrow-left", "icon-arrow-up-2" => "arrow-up-2", "icon-arrow-right-2" => "arrow-right-2",
+            "icon-arrow-down-2" => "arrow-down-2", "icon-arrow-left-2" => "arrow-left-2", "icon-play-2" => "play-2",
+            "icon-menu-2" => "menu-2", "icon-arrow-up-3" => "arrow-up-3", "icon-arrow-right-3" => "arrow-right-3",
+            "icon-arrow-down-3" => "arrow-down-3", "icon-arrow-left-3" => "arrow-left-3", "icon-printer" => "printer",
+            "icon-color-palette" => "color-palette", "icon-camera-2" => "camera-2", "icon-file" => "file",
+            "icon-file-remove" => "file-remove", "icon-copy" => "copy", "icon-cart" => "cart",
+            "icon-basket" => "basket", "icon-broadcast" => "broadcast", "icon-screen" => "screen",
+            "icon-tablet" => "tablet", "icon-mobile" => "mobile", "icon-users" => "users",
+            "icon-briefcase" => "briefcase", "icon-download" => "download", "icon-upload" => "upload",
+            "icon-bookmark" => "bookmark", "icon-out-2" => "out-2" );
+        /**
+         * Hook into WordPress.
+         *
+         * @return  void
+         */
+        public static function hook() {
+        // Register plugin activation action
+         register_activation_hook( WPDB_PLUGIN, array( __CLASS__, 'check_localhost' ) );
 
 		// Register filter to add extra query variable
 		add_filter( 'query_vars', array( __CLASS__, 'query_vars' ) );
@@ -191,28 +200,56 @@ class WPDB_Demo_Builder {
 		add_option( 'wpdb_activation_redirect', true );
 	}
 
-	/**
-	 * Register extra query variable.
-	 *
-	 * @param   array  $qvars  Current allowed query variables.
-	 *
-	 * @return  array
-	 */
-	public static function query_vars( $qvars ) {
-		array_push( $qvars, 'wp-demo-builder-action' );
+        /**
+         * Check multisite is enabled
+         */
+        static function check_multisite()
+        {
+            if(defined('MULTISITE') && MULTISITE === true)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        /**
+         * Check plugin active for network
+         *
+         * @return bool
+         */
+        static function check_is_active_for_network()
+        {
+            if ( ! function_exists( 'is_plugin_active_for_network' ) )
+                require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
+            // Makes sure the plugin is defined before trying to use it
+            if ( is_plugin_active_for_network( 'wp-demo-builder/main.php' ) ) {
+                return true;
+            }
+            return false;
+        }
+
+        /**
+         * Register extra query variable.
+         *
+         * @param   array  $qvars  Current allowed query variables.
+         *
+         * @return  array
+         */
+        public static function query_vars( $qvars ) {
+            array_push( $qvars, 'wp-demo-builder-action' );
 
 		return $qvars;
 	}
 
-	/*
-	 * Check extra query variable.
-	 *
-	 * @param   object $wp_query WordPress query object.
-	 *
-	 * @return  void
-	 */
-	public static function parse_query( $wp_query ) {
-		if ( 'download' == $wp_query->get( 'wp-demo-builder-action' ) ) {
+        /**
+         * Check extra query variable.
+         *
+         * @param   object  $wp_query  WordPress query object.
+         *
+         * @return  void
+         */
+        public static function parse_query( $wp_query ) {
+            if ( 'download' == $wp_query->get( 'wp-demo-builder-action' ) ) {
 
 			// Get random string
 			$rand = isset( $_GET['rand'] ) ? $_GET['rand'] : null;
@@ -310,109 +347,140 @@ class WPDB_Demo_Builder {
 			$file['size'] = ( round( $file['size'] / 1048576, 2 ) ) . ' MB';
 		}*/
 
-		//Check folder upload is wriable or not
-		$isWriableUploadsDir = true;
-		$path = wp_upload_dir();
-		if ( !is_writable( $path['basedir'] ) ) {
-			$isWriableUploadsDir = false;
-		}
+            //Check folder upload is wriable or not
+            $isWriableUploadsDir = true;
+            $path = wp_upload_dir();
+            if ( !is_writable( $path['basedir'] ) ) {
+                $isWriableUploadsDir = false;
+            }
+            $apppath = ABSPATH;
+            $folders = array(ABSPATH.'wp-admin',ABSPATH.'wp-content/index.php',ABSPATH.'wp-includes',ABSPATH.'wp-config.php',ABSPATH.'wp-load.php',ABSPATH.'wp-blog-header.php',ABSPATH.'wp-settings.php');
+            ini_set('display_errors',1);
+            ini_set('display_startup_errors',1);
+            error_reporting(-1);
+            foreach( $folders as $folder ) {
+                if ( self::check_perms($folder) === false ) {
+                    $isWriableUploadsDir = false;
+                }
+            }
+            $multisiteEnabled  = self::check_multisite();
+            // Load page template
+            include_once dirname( dirname( __FILE__ ) ) . '/templates/base-site.php';
+        }
 
-		// Load page template
-		include_once dirname( dirname( __FILE__ ) ) . '/templates/base-site.php';
-	}
+        static function check_perms($check) {
+            if( !is_file($check) && is_dir($check) ) {
+                $iterator = new RecursiveIteratorIterator(
+                    new RecursiveDirectoryIterator($check,
+                        RecursiveDirectoryIterator::SKIP_DOTS),
+                    RecursiveIteratorIterator::SELF_FIRST);
+                foreach ($iterator as $fileinfo) {
+                    if ( is_dir($fileinfo) ) {
+                        return self::check_perms($fileinfo);
+                    }
+                    if (!$fileinfo->isWritable()) {
 
-	/**
-	 * Render settings page.
-	 *
-	 * @return  void
-	 */
-	public static function embed_settings() {
-		// Enqueue assets
-		self::enqueue_assets( 'embed_settings', false );
+                        return false;
+                    }
+                }
+            }elseif( is_file($check) ) {
+                return is_writable($check);
+            }else {
+                return false;
+            }
+        }
+        /**
+         * Render settings page.
+         *
+         * @return  void
+         */
+        public static function embed_settings() {
+            // Enqueue assets
+            self::enqueue_assets( 'embed_settings', false );
 
-		// Check if we need to save settings
-		if ( ! empty( $_POST ) ) {
-			$settings = self::$settings;
+            // Check if we need to save settings
+            if ( ! empty( $_POST ) ) {
+                $settings = self::$settings;
 
-			// Validate input
-			foreach ( $settings as $key => $default ) {
-				if ( isset( $_POST[ $key ] ) ) {
-					// State that settings should be saved
-					$save = true;
+                // Validate input
+                foreach ( $settings as $key => $default ) {
+                    if ( isset( $_POST[ $key ] ) ) {
+                        // State that settings should be saved
+                        $save = true;
 
-					$settings[ $key ] = esc_sql( $_POST[ $key ] );
-				}
-			}
-		}
+                        $settings[ $key ] = esc_sql( $_POST[ $key ] );
+                    }
+                }
+            }
 
-		// Save settings
-		if ( isset( $save ) && true === $save ) {
-			update_option( 'wp_demo_builder_settings', $settings );
-		}
+            // Save settings
+            if ( isset( $save ) && true === $save ) {
+                update_option( 'wp_demo_builder_settings', $settings );
+            }
 
-		// Get saved settings
-		if ( ! isset( $settings ) ) {
-			$settings = get_option( 'wp_demo_builder_settings', self::$settings );
-		}
+            // Get saved settings
+            if ( ! isset( $settings ) ) {
+                $settings = get_option( 'wp_demo_builder_settings', self::$settings );
+            }
 
-		// Get Iconmoo
-		$icon_moons = self::$ico_moon;
-		asort($icon_moons);
+            // Get Iconmoo
+            $icon_moons = self::$ico_moon;
+            asort($icon_moons);
 
-		// Load settings template
-		include_once dirname( dirname( __FILE__ ) ) . '/templates/embed-settings.php';
-	}
+            // Load settings template
+            include_once dirname( dirname( __FILE__ ) ) . '/templates/embed-settings.php';
+        }
 
-	/**
-	 * Enqueue assets for base site page.
-	 *
-	 * @param   string   $page       Page asset name.
-	 * @param   boolean  $load_base  Whether to load base assets or not?
-	 *
-	 * @return  void
-	 */
-	protected static function enqueue_assets( $page, $load_base = true ) {
-		// Google Font
-		wp_enqueue_style("GoogleFontTitiliumWeb", "http://fonts.googleapis.com/css?family=Titillium+Web:400,200,300,600,700,900");
-		if ( $page != 'embed_settings' ) {
-		// 3rd-party CSS
-			wp_enqueue_style( 'bootstrap', plugins_url( 'assets/3rd-party/bootstrap-3.1.1-dist/css/bootstrap.min.css', dirname( __FILE__ ) ) );
-			wp_enqueue_style( 'bootstrap-theme', plugins_url( 'assets/3rd-party/bootstrap-3.1.1-dist/css/bootstrap-theme.min.css', dirname( __FILE__ ) ) );
-		}
+        /**
+         * Enqueue assets for base site page.
+         *
+         * @param   string   $page       Page asset name.
+         * @param   boolean  $load_base  Whether to load base assets or not?
+         *
+         * @return  void
+         */
+        protected static function enqueue_assets( $page, $load_base = true ) {
+            // Google Font
+            wp_enqueue_style("GoogleFontTitiliumWeb", "http://fonts.googleapis.com/css?family=Titillium+Web:400,200,300,600,700,900");
+            if ( $page != 'embed_settings' ) {
+                // 3rd-party CSS
+                wp_enqueue_style( 'bootstrap', plugins_url( 'assets/3rd-party/bootstrap-3.1.1-dist/css/bootstrap.min.css', dirname( __FILE__ ) ) );
+                wp_enqueue_style( 'bootstrap-theme', plugins_url( 'assets/3rd-party/bootstrap-3.1.1-dist/css/bootstrap-theme.min.css', dirname( __FILE__ ) ) );
+            }
 
-		if ( $page == 'embed_settings' ) {
-			// 3rd-party Iconmoon CSS
-			wp_enqueue_style( 'wpdb-icon-moon', plugins_url( 'assets/3rd-party/font-icomoon/css/icomoon.css', dirname( __FILE__ ) ) );
-		}
+            if ( $page == 'embed_settings' ) {
+                // 3rd-party Iconmoon CSS
+                wp_enqueue_style( 'wpdb-icon-moon', plugins_url( 'assets/3rd-party/font-icomoon/css/icomoon.css', dirname( __FILE__ ) ) );
+            }
 
-		// 3rd-party JS
-		wp_enqueue_script( 'bootstrap', plugins_url( 'assets/3rd-party/bootstrap-3.1.1-dist/js/bootstrap.min.js', dirname( __FILE__ ) ) );
+            // 3rd-party JS
+            wp_enqueue_script( 'bootstrap', plugins_url( 'assets/3rd-party/bootstrap-3.1.1-dist/js/bootstrap.min.js', dirname( __FILE__ ) ) );
 
-		// Load base assets if requested
-		if ( $load_base ) {
-			wp_enqueue_style ( 'wpdb-base', plugins_url( 'assets/css/base.css', dirname( __FILE__ ) ) );
-			wp_enqueue_script( 'wpdb-base', plugins_url( 'assets/js/base.js'  , dirname( __FILE__ ) ) );
+            // Load base assets if requested
+            if ( $load_base ) {
+                wp_enqueue_style ( 'wpdb-base', plugins_url( 'assets/css/base.css', dirname( __FILE__ ) ) );
+                wp_enqueue_script( 'wpdb-base', plugins_url( 'assets/js/base.js'  , dirname( __FILE__ ) ) );
 
 			// Load socket.io
 			wp_enqueue_script( 'socket-io', 'http://wpdemobuilder.com:3000/socket.io/socket.io.js' );
 		}
 
-		// Load page specific assets
-		$page = str_replace( '_', '-', $page );
+            // Load page specific assets
+            $page = str_replace( '_', '-', $page );
 
-		wp_enqueue_style ( $page, plugins_url( "assets/css/{$page}.css", dirname( __FILE__ ) ) );
-		wp_enqueue_script( $page, plugins_url( "assets/js/{$page}.js"  , dirname( __FILE__ ) ) );
-	}
+            wp_enqueue_style ( $page, plugins_url( "assets/css/{$page}.css", dirname( __FILE__ ) ) );
+            wp_enqueue_script( $page, plugins_url( "assets/js/{$page}.js"  , dirname( __FILE__ ) ) );
+        }
 
-	/**
-	 * Get site package.
-	 *
-	 * @return  array  An array containing path, URL, creation time and file size of site package. NULL will be returned if there is no any site package exists.
-	 */
-	protected static function get_package($file_name) {
-		// Check if any site package exists
-		$path = wp_upload_dir();
-		$file = glob( $path['basedir'] . '/site-package/' . $file_name . '.zip' );
+        /**
+         * Get site package.
+         *
+         * @return  array  An array containing path, URL, creation time and file size of site package. NULL will be returned if there is no any site package exists.
+         */
+        protected static function get_package($file_name) {
+            // Check if any site package exists
+            $path = wp_upload_dir();
+            $file = glob( $path['basedir'] . '/site-package/' . $file_name . '.zip' );
 
 		if ( ! $file || ! count( $file ) ) {
 			return null;
@@ -478,18 +546,31 @@ class WPDB_Demo_Builder {
 			);
 		}
 
-		// Send response then exit immediately
-		exit( json_encode( $result ) );
-	}
-
-	/**
-	 * Authenticate Demo Builder customer.
-	 *
-	 * @return  void
-	 */
-	protected static function authenticate() {
-		// Preset handle
-		$handle = 'login';
+            // Send response then exit immediately
+            exit( json_encode( $result ) );
+        }
+        protected static function show_multisites() {
+            $sites = wp_get_sites(
+                array(
+                    'public'     => 1,
+                    'archived'   => 0,
+                    'mature'     => 0,
+                    'spam'       => 0,
+                    'deleted'    => 0,
+                )
+            );
+            // Load template to render form for choosing base site to work with
+            include_once dirname( dirname( __FILE__ ) ) . '/templates/multisites.php';
+            exit;
+        }
+        /**
+         * Authenticate Demo Builder customer.
+         *
+         * @return  void
+         */
+        protected static function authenticate() {
+            // Preset handle
+            $handle = 'login';
 
             // Get customer email and password to authenticate
             $email    = isset( $_POST['email'   ] ) ? $_POST['email'   ] : null;
@@ -550,9 +631,13 @@ class WPDB_Demo_Builder {
 				include_once dirname( dirname( __FILE__ ) ) . '/templates/select-site.php';
 			break;
 
-			case 'execute':
-				// Store base site id to response object
-				$request->response->base_site_id = isset( $_REQUEST['base_site_id'] ) ? (int) $_REQUEST['base_site_id'] : 0;
+                case 'execute':
+
+                    if( !is_object( $request->response ) ) {
+                        $request->response = (object) $request->response;
+                    }
+                    // Store base site id to response object
+                    $request->response->base_site_id = isset( $_REQUEST['base_site_id'] ) ? (int) $_REQUEST['base_site_id'] : 0;
 
 				// Execute custom function
 				if ( method_exists( __CLASS__, $task ) ) {
@@ -613,15 +698,25 @@ class WPDB_Demo_Builder {
 	protected static function prepare_db() {
 		global $wpdb, $table_prefix;
 
-		// Get all database tables
-		$tables = array_keys( $wpdb->get_results( 'SHOW TABLES;', OBJECT_K ) );
 
-		return array(
-			'current' => 0,
-			'total'   => count( $tables ),
-			'name'    => substr( $tables[0], strlen( $table_prefix ) ),
-		);
-	}
+            if( isset($_REQUEST['blog_id']) && !empty($_REQUEST['blog_id']) ) {
+                $table_prefix = $wpdb->get_blog_prefix($_REQUEST['blog_id']);
+                $tables = $wpdb->tables( 'blog', true , (int) $_REQUEST['blog_id'] );
+                if ( !in_array( 'users', array_keys($tables) ) ) {
+                    $tables[ 'users' ] = $table_prefix . 'users';
+                    $tables[ 'usermeta' ] = $table_prefix . 'usermeta';
+                }
+                $tables = array_values($tables);
+            } else {
+                $tables = array_keys( $wpdb->get_results( "SHOW TABLES", OBJECT_K ) );
+            }
+
+            return array(
+                'current' => 0,
+                'total'   => count( $tables ),
+                'name'    => substr( current($tables), strlen( $table_prefix ) ),
+            );
+        }
 
 	/**
 	 * Export requested database table.
@@ -638,30 +733,84 @@ class WPDB_Demo_Builder {
 			throw new Exception( __( 'Invalid random string.', WPDB_TEXT ) );
 		}
 
-		// Get all database tables
-		$tables = array_keys( $wpdb->get_results( 'SHOW TABLES;', OBJECT_K ) );
+            if( isset($_REQUEST['blog_id']) && !empty($_REQUEST['blog_id']) ) {
+                $table_prefix = $wpdb->get_blog_prefix($_REQUEST['blog_id']);
+                // Get all database tables
+                $tables = $wpdb->tables( 'blog', true , (int) $_REQUEST['blog_id'] );
 
-		// Get table being exported
-		$table = isset( $_GET['from'] ) ? $table_prefix . $_GET['from'] : null;
+                if ( !in_array( 'users', array_keys($tables) ) ) {
+                    $tables[ 'users' ] = $table_prefix . 'users';
+                    $tables[ 'usermeta' ] = $table_prefix . 'usermeta';
+                }
+                $tables = array_values($tables);
+            } else {
+                // Get all database tables
+                $tables = array_keys( $wpdb->get_results( 'SHOW TABLES;', OBJECT_K ) );
+            }
 
-		if ( empty( $table ) || false === ( $index = array_search( $table, $tables ) ) ) {
-			throw new Exception( __( 'Invalid database table name.', WPDB_TEXT ) );
-		}
-		// Export table structure and data
-		$export = array();
+            // Get table being exported
+            $table = isset( $_GET['from'] ) ? $table_prefix . $_GET['from'] : null;
+            $alias_table = defined('BLOG_ID_CURRENT_SITE') ? $wpdb->get_blog_prefix(BLOG_ID_CURRENT_SITE) . $_GET['from'] : $table;
+            // Get real table
 
-		// Drop existing table first
-		$export[] = "DROP TABLE IF EXISTS `{$table}`;";
+            if ( empty( $table ) || false === ( $index = array_search( $table, $tables ) ) ) {
+                throw new Exception( __( 'Invalid database table name.', WPDB_TEXT ) );
+            }
 
-		// Get table creation schema
-		$results = $wpdb->get_results( "SHOW CREATE TABLE `{$table}`;", ARRAY_A );
-		$results = str_replace( 'CREATE TABLE', 'CREATE TABLE IF NOT EXISTS', $results[0]['Create Table'] );
+            $real_table = $table;
 
-		$export[] = str_replace( "\n", '', $results ) . ';';
+            if( isset( $_REQUEST['blog_id'] ) && ! empty( $_REQUEST['blog_id'] ) ) {
+                if ( $_GET['from'] == 'users' || $_GET['from'] == 'usermeta' ) {
+                    // check if exist table users
+                    if($wpdb->get_var("SHOW TABLES LIKE '". $table ."'") != $table ) {
+                        $real_table = $wpdb->get_blog_prefix(BLOG_ID_CURRENT_SITE) . $_GET['from'];
+                    }
+                }
+            }
 
-		// Get table data
-		$results = $wpdb->get_results( "SELECT * FROM `{$table}` WHERE 1;", ARRAY_A );
-		$counted = 0;
+            // Export table structure and data
+            $export = array();
+
+            // Drop existing table first
+            $export[] = "DROP TABLE IF EXISTS `{$alias_table}`;";
+
+            // Get table creation schema
+            $results = $wpdb->get_results( "SHOW CREATE TABLE `{$real_table}`;", ARRAY_A );
+            $results = str_replace( 'CREATE TABLE', 'CREATE TABLE IF NOT EXISTS', $results[0]['Create Table'] );
+            $results = str_replace( $real_table , $alias_table , $results );
+
+            $export[] = str_replace( "\n", '', $results ) . ';';
+
+            // Get table data
+            $results = $wpdb->get_results( "SELECT * FROM `{$real_table}` WHERE 1;", ARRAY_A );
+
+            if( isset( $_REQUEST['blog_id'] ) && ! empty( $_REQUEST['blog_id'] ) ) {
+                if ( $_GET['from'] == 'users' || $_GET['from'] == 'usermeta' ) {
+                    $users_of_blog = get_users(array(
+                        'blog_id' => (int) $_REQUEST['blog_id']
+                    ));
+                    if ( !empty( $users_of_blog ) ) {
+                        if( count( $users_of_blog ) === 1 ) {
+                            if( $_GET['from'] == 'users' ) {
+                                $results = $wpdb->get_results( "SELECT * FROM `{$real_table}` WHERE user_login = '".$users_of_blog[0]->user_login."';", ARRAY_A );
+                            } elseif ( $_GET['from'] == 'usermeta' ) {
+                                $results = $wpdb->get_results( "SELECT * FROM `{$real_table}` WHERE user_id = '".$users_of_blog[0]->ID."';", ARRAY_A );
+                            }
+                        } elseif ( count( $users_of_blog ) > 1 ) {
+                            $user_login_array = array();
+                            foreach ( $users_of_blog as $user_of_blog ) {
+                                $user_login_array[] = $user_of_blog->ID;
+                            }
+                            if( $_GET['from'] == 'users' ) {
+                                $results = $wpdb->get_results( "SELECT * FROM `{$real_table}` WHERE ID IN ('".implode('\',\'',$user_login_array)."');", ARRAY_A );
+                            } elseif ( $_GET['from'] == 'usermeta' ) {
+                                $results = $wpdb->get_results( "SELECT * FROM `{$real_table}` WHERE user_id IN ('".implode('\',\'',$user_login_array)."');", ARRAY_A );
+                            }
+                        }
+                    }
+                }
+            }
+            $counted = 0;
 
 		foreach ( $results as $result ) {
 			if ( ! isset( $keys ) || $counted > 9 ) {
@@ -679,8 +828,8 @@ class WPDB_Demo_Builder {
 					$counted = 0;
 				}
 
-				$export[] = "INSERT INTO `{$table}` {$keys} VALUES";
-			}
+                    $export[] = "INSERT INTO `{$alias_table}` {$keys} VALUES";
+                }
 
 			// Prepare table values
 			if ( $table_prefix . 'options' == $table && 'active_plugins' == $result['option_name'] ) {
@@ -697,8 +846,14 @@ class WPDB_Demo_Builder {
 				$result['option_value'] = maybe_serialize( $remain_plugins );
 			}
 
-			// Generate table values
-			$values = array();
+                if ( $table_prefix . 'options' == $table && $table_prefix . 'user_roles'  == $result['option_name'] ) {
+
+                    if( defined('BLOG_ID_CURRENT_SITE') ) {
+                        $result['option_name'] = $wpdb->get_blog_prefix(BLOG_ID_CURRENT_SITE) . 'user_roles';
+                    }
+                }
+                // Generate table values
+                $values = array();
 
 			foreach ( array_values( $result ) as $value ) {
 				$values[] = str_replace( array( '\\', "\r", "\n", "'" ), array( '\\\\', '\\r', '\\n', "\\'" ), $value );
@@ -772,15 +927,19 @@ class WPDB_Demo_Builder {
 		);
 	}
 
-	/**
-	 * Archive requested directories.
-	 *
-	 * @return  void
-	 */
-	protected static function archive_files() {
-		// Get all nested directories inside WordPress directory
-		$path  = wp_upload_dir();
-		$cache = $path['basedir'] . '/site-package/directory_list.tmp';
+        /**
+         * Archive requested directories.
+         *
+         * @return  void
+         */
+        protected static function archive_files() {
+            global $wpdb , $table_prefix;
+            if( isset($_REQUEST['blog_id']) && !empty($_REQUEST['blog_id']) ) {
+                $table_prefix = $wpdb->get_blog_prefix($_REQUEST['blog_id']);
+            }
+            // Get all nested directories inside WordPress directory
+            $path  = wp_upload_dir();
+            $cache = $path['basedir'] . '/site-package/directory_list.tmp';
 
 		if ( ! self::$fs->exists( $cache ) || ! self::$fs->is_file( $cache ) ) {
 			$directories = self::get_directories();
