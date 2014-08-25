@@ -109,40 +109,46 @@
 						method: 'POST',
 						callback: function(response) {
 
-							
-						}
-					});
-					
-				}).text(self.params.text['Reconnect']).hide();
-				
-				// Generate continue button
-				continue_button = $('<button type="button" class="btn btn-primary" />').click(function(event) {
-					event.preventDefault();
 
-					if (form.attr('name') == 'WP_Demo_Builder_Select_Site') {
-						// Store authentication data
-						self.authentication = self.authentication || {};
+                            }
+                        });
+
+                    }).text(self.params.text['Reconnect']).hide();
+
+                    // Generate continue button
+                    continue_button = $('<button type="button" class="btn btn-primary" />').click(function(event) {
+                        event.preventDefault();
+                        if (form.attr('name') == 'WP_Demo_Builder_Select_Site') {
+                            // Store authentication data
+
+                            // check is writable folder
+                            if(self.params.isWriableUploadsDir === false) {
+                                return $.ProcessingDialog.show({content : $("#writable-warning").text()});
+                            }
+self.authentication = self.authentication || {};
 
 						$.each(form.serializeArray(), function(i, o) {
 							self.authentication[o.name] = o.value;
 						});
 
-						// Send data silently
-						$.ajax({
-							url: form.attr('action'),
-							data: self.authentication,
-							method: form.attr('method'),
-							complete: function(response) {
-								// Store customer and base site data
-								self.data = $.parseJSON(response.responseText);
-							}
-						});
-						// Hide processing dialog
-						$.ProcessingDialog.hide();
+                            // Send data silently
+                            $.ajax({
+                                url: form.attr('action'),
+                                data: self.authentication,
+                                method: form.attr('method'),
+                                complete: function(response) {
+                                    // Store customer and base site data
+                                    self.data = $.parseJSON(response.responseText);
+                                }
+                            });
+                            // Hide processing dialog
+                            $.ProcessingDialog.hide();
 
-						// Start creating base site package
-						return self.create_site_package();
-					}
+                            var site_code = form.find('li.thumbnail.selected').find('input[name="site_code"]').val();
+
+                            // Start creating base site package
+                            return self.create_site_package();
+					    }
 
 					// Store authentication data
 					self.authentication = self.authentication || {};
@@ -200,19 +206,27 @@
 							// Mark selection
 							$(this).addClass('selected').find('input[type="radio"]').attr('checked', 'checked');
 
-							if (parseInt($(this).find('input[type="radio"]').val()) > 0)
-							{
-								reconnect_button.show();
-							}	
-							else
-							{
-								reconnect_button.hide();
-							}	
-							// Enable continue button
-							continue_button.removeClass('disabled').removeAttr('disabled');
-						});
-					break;
-				}
+                                if (parseInt($(this).find('input[type="radio"]').val()) > 0)
+                                {
+                                    reconnect_button.show();
+                                }
+                                else
+                                {
+                                    reconnect_button.hide();
+                                }
+                                // Enable continue button
+                                continue_button.removeClass('disabled').removeAttr('disabled');
+                            });
+                            break;
+                        case 'WP_Demo_Builder_Select_MultiSites' :
+                            if(typeof $('input[type="radio"]:checked') !== 'undefined') {
+                                continue_button.removeClass('disabled').removeAttr('disabled');
+                            }
+                            form.find('input[type="radio"]').click(function(){
+                                continue_button.removeClass('disabled').removeAttr('disabled');
+                            });
+                            break;
+                    }
 
 				if (form.attr('name') == 'WP_Demo_Builder_Select_Site') {
 					modal.find('.modal-footer').append(reconnect_button);
@@ -236,21 +250,20 @@
                 }
             });
         },
+        create_site_package: function(prepare_file) {
+            var self = this;
 
-		create_site_package: function(prepare_file) {
-			var self = this;
-			
-			$("#create-site-package").addClass("hide");
-			$("#cancel-process").removeClass("hide");
+            $("#create-site-package").addClass("hide");
+            $("#cancel-process").removeClass("hide");
+            var dataValue = (self.params.multisite !== false) ? {blog_id : self.params.blog_id} : {};
+            if (!prepare_file) {
 
-			if (!prepare_file) {
-
-				// Send AJAX request
-				$.ajax({
-					url: self.params.url,
-					data: {state: 'prepare_db'},
-					complete: function(response) {
-						response = self.parse(response);
+                // Send AJAX request
+                $.ajax({
+                    url: self.params.url,
+                    data: $.extend(dataValue,{state: 'prepare_db'}),
+                    complete: function(response) {
+                        response = self.parse(response);
 
 						if (response.status == 'success') {
 							self.export_db(response.data);
@@ -261,12 +274,12 @@
 				});
 			} else {
 
-				// Send AJAX request
-				$.ajax({
-					url: self.params.url,
-					data: {state: 'prepare_files'},
-					complete: function(response) {
-						response = self.parse(response);
+                // Send AJAX request
+                $.ajax({
+                    url: self.params.url,
+                    data: $.extend(dataValue,{state: 'prepare_files'}),
+                    complete: function(response) {
+                        response = self.parse(response);
 
 						if (response.status == 'success') {
 							self.archive_files(response.data);
@@ -300,15 +313,17 @@
 				return self.create_site_package(true);
 			}
 
-			// Update processing state
-			self.exporting.find('.processing-state').text(self.params.text['Exporting %s...'].replace('%s', data.name));
+            // Update processing state
+            self.exporting.find('.processing-state').text(self.params.text['Exporting %s...'].replace('%s', data.name));
+            // Send AJAX request
+            var dataValue = (self.params.multisite !== false) ? {blog_id : self.params.blog_id} : {};
 
-			// Send AJAX request
-			$.ajax({
-				url: self.params.url,
-				data: {state: 'export_db', from: data.name, rand: self.rand_string},
-				complete: function(response) {
-					response = self.parse(response);
+            $.ajax({
+                url: self.params.url,
+                data: $.extend(dataValue,{state: 'export_db', from: data.name, rand: self.rand_string}) ,
+                complete: function(response) {
+
+                    response = self.parse(response);
 
 					if (response.status == 'success') {
                         setTimeout(function(){
@@ -345,12 +360,15 @@
 			// Update processing state
 			self.archiving.find('.processing-state').text(self.params.text['Archiving %s...'].replace('%s', data.name || ''));
 
-			// Send AJAX request
-			$.ajax({
-				url: self.params.url,
-				data: {state: 'archive_files', from: data.current, rand: self.rand_string},
-				complete: function(response) {
-					response = self.parse(response);
+            // Send AJAX request
+            var dataValue = (self.params.multisite !== false) ? {blog_id : self.params.blog_id} : {};
+
+            $.ajax({
+                url: self.params.url,
+                data: $.extend(dataValue,{state: 'archive_files', from: data.current, rand: self.rand_string}) ,
+                complete: function(response) {
+
+                    response = self.parse(response);
 
 					if (response.status == 'success') {
                         setTimeout(function(){
@@ -382,47 +400,72 @@
 					socket.once('connect', function() {
 						socket.emit('authen_data', params);
 
-						socket.on('authen_success', function() {
-							socket.emit('client_data', params);
-						});
+                        socket.on('authen_fail', function(response) {
+                            if(typeof response != 'object') {
+                                response = JSON.parse(response);
+                            }
+                            self.pushing.addClass("error");
+                            return $.Notification.show({style:'danger',message : response.message});
+                        });
 
-						socket.on('progress', function(data) {
-							self.progress(self.pushing, data.download);
-							self.progress(self.extracting, data.extract);
+                        socket.on('authen_success', function() {
+                            socket.emit('client_data', params);
+                        });
 
-							return;
-						});
-						
-						socket.on('download-error', function() {
-							self.pushing.addClass("error");
-						});
+                        socket.on('push_fail', function() {
+                            if(typeof response != 'object') {
+                                response = JSON.parse(response);
+                            }
+                            self.pushing.addClass("error");
+                            return $.Notification.show({style:'danger',message : response.message});
+                        });
 
-						socket.on('download-complete', function() {
-							setTimeout(function() {
-								self.progress(self.pushing, 100);
-							}, 500);
-						});
-						
-						socket.on('zipfile-invalid', function() {
-							self.extracting.addClass("error");
-						});
+                        socket.on('progress', function(data) {
+                            self.progress(self.pushing, data.download);
+                            self.progress(self.extracting, data.extract);
 
-						socket.on('extract-complete', function() {
-							setTimeout(function() {
-								self.progress(self.extracting, 100);
-							}, 500);
-						});
+                            return;
+                        });
 
-						socket.on('final-error', function(data) {
-							// Destroy socket
-							socket.destroy();
+                        socket.on('download-error', function(response) {
+                            if(typeof response != 'object') {
+                                response = JSON.parse(response);
+                            }
+                            self.pushing.addClass("error");
+                            return $.Notification.show({style:'danger',message : response.message});
+                        });
 
-							self.extracting.addClass("error");
-						});
-						
-						socket.on('final-success', function(data) {
-							// Destroy socket
-							socket.destroy();
+                        socket.on('download-complete', function() {
+                            setTimeout(function() {
+                                self.progress(self.pushing, 100);
+                            }, 500);
+                        });
+
+                        socket.on('zipfile-invalid', function(response) {
+                            self.extracting.addClass("error");
+                            return $.Notification.show({style:'danger',message : response.message});
+                        });
+
+                        socket.on('error', function(response) {
+                            self.extracting.addClass("error");
+                            return $.Notification.show({style:'danger',message : response.message});
+                        });
+
+                        socket.on('extract-complete', function(response) {
+                            setTimeout(function() {
+                                self.progress(self.extracting, 100);
+                            }, 500);
+                        });
+
+                        socket.on('final-error', function(response) {
+                            // Destroy socket
+                            socket.destroy();
+
+                            self.extracting.addClass("error");
+                            return $.Notification.show({style:'danger',message : response.message});
+                        });
+
+                        socket.on('final-success', function(data) {
 
 							// Update base site ID
 							if (params.base_site_id != data.base_site_id) {
@@ -431,11 +474,23 @@
 							// Get embed code
 							self.embed_code(params);
                             self.confirm_remote_address(params);
-						});
-					});
-				},
-			});
-		},
+                            if((params.hasOwnProperty('site_code') && params.site_code != '') || (data.hasOwnProperty('site_code') && data.site_code != '')) {
+                                var site_code = params.site_code ? params.site_code : data.site_code;
+                                socket.emit('create-reserve-sites', {'site_code' : site_code});
+                                socket.on('create-reserve-sites-error', function() {
+                                    socket.destroy();
+                                });
+                                socket.on('create-reserve-sites-success', function() {
+                                    socket.destroy();
+                                });
+                            }
+                            // Destroy socket
+                            socket.destroy();
+                        });
+                    });
+                },
+            });
+        },
 
 		embed_code: function(params) {
 			var self = this;
