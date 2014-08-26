@@ -297,13 +297,18 @@
 
         },
         show: function(params) {
-            var self = this;
-            if (typeof params === "string")
-                params = { message: params }
-            var params = $.extend({}, this.params, params);
-            var $el = $("<div class='alert alert-"+params.style+"'>")
-                .append(params.message);
-            self.element.html($el);
+			var self = this;
+			if (typeof params === "string") {
+				params = { message: params }
+			}
+			params = $.extend({}, this.params, params);
+			var $el = $("<div class='alert alert-" + params.style + "'>")
+				.append(params.message);
+			self.element.html($el);
+			if(params.hasOwnProperty('style') && params.style == 'danger') {
+				$("#cancel-process").hide();
+				$("#reload-button").removeClass("hide").show();
+			}
         }
     }
     $.Notification.init();
