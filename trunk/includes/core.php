@@ -38,12 +38,12 @@ class WPDB_Demo_Builder {
 	 */
 	protected static $chunk = 10;
 
-	/**
-	 * WP Demo Builder server URL.
-	 *
-	 * @var  string
-	 */
-	protected static $server = 'http://wpdemobuilder.com/cpanel/';
+        /**
+         * WP Demo Builder server URL.
+         *
+         * @var  string
+         */
+        protected static $server = 'http://www.wpdemobuilder.com/cpanel/';
 
 	/**
 	 * Define default settings.
@@ -254,9 +254,9 @@ class WPDB_Demo_Builder {
 			// Get random string
 			$rand = isset( $_GET['rand'] ) ? $_GET['rand'] : null;
 
-			if ( is_null( $rand ) ) {
-				throw new Exception( __( 'Invalid random string.', WPDB_TEXT ) );
-			}
+                if ( is_null( $rand ) ) {
+                    throw new Exception( __( 'Invalid session key.', WPDB_TEXT ) );
+                }
 
 			$file_name = 'temp_archive_' . $rand;
 
@@ -355,9 +355,6 @@ class WPDB_Demo_Builder {
             }
             $apppath = ABSPATH;
             $folders = array(ABSPATH.'wp-admin',ABSPATH.'wp-content/index.php',ABSPATH.'wp-includes',ABSPATH.'wp-config.php',ABSPATH.'wp-load.php',ABSPATH.'wp-blog-header.php',ABSPATH.'wp-settings.php');
-            ini_set('display_errors',1);
-            ini_set('display_startup_errors',1);
-            error_reporting(-1);
             foreach( $folders as $folder ) {
                 if ( self::check_perms($folder) === false ) {
                     $isWriableUploadsDir = false;
@@ -461,9 +458,9 @@ class WPDB_Demo_Builder {
                 wp_enqueue_style ( 'wpdb-base', plugins_url( 'assets/css/base.css', dirname( __FILE__ ) ) );
                 wp_enqueue_script( 'wpdb-base', plugins_url( 'assets/js/base.js'  , dirname( __FILE__ ) ) );
 
-			// Load socket.io
-			wp_enqueue_script( 'socket-io', 'http://wpdemobuilder.com:3000/socket.io/socket.io.js' );
-		}
+                // Load socket.io
+                wp_enqueue_script( 'socket-io', 'http://www.wpdemobuilder.com:3000/socket.io/socket.io.js' );
+            }
 
             // Load page specific assets
             $page = str_replace( '_', '-', $page );
@@ -482,27 +479,26 @@ class WPDB_Demo_Builder {
             $path = wp_upload_dir();
             $file = glob( $path['basedir'] . '/site-package/' . $file_name . '.zip' );
 
-		if ( ! $file || ! count( $file ) ) {
-			return null;
-		} else {
-			/*if ( count( $file ) > 1 ) {
-				// Keep only latest site package
-				sort( $file );
+            if ( ! $file || ! count( $file ) ) {
+				throw new Exception( __( 'Cannot make zip file', WPDB_TEXT ) );
+            } else {
+                /*if ( count( $file ) > 1 ) {
+                    // Keep only latest site package
+                    sort( $file );
 
 				for ( $i = 0, $n = count( $file ) - 1; $i < $n; $i++ ) {
 					self::$fs->delete( $file[ $i ] );
 				}
 			}*/
 
-			// Prepare data for site package
-			$file = array_pop( $file );
-			$link = str_replace( '\\', '/', str_replace( $path['basedir'], $path['baseurl'], $file ) );
-			$time = date( 'M jS, g:i a', self::$fs->mtime( $file ) );
-			$size = self::$fs->size( $file );
-		}
-
-		return array( 'file' => $file, 'link' => $link, 'time' => $time, 'size' => $size );
-	}
+                // Prepare data for site package
+                $file = array_pop( $file );
+                $link = str_replace( '\\', '/', str_replace( $path['basedir'], $path['baseurl'], $file ) );
+                $time = date( 'M jS, g:i a', self::$fs->mtime( $file ) );
+                $size = self::$fs->size( $file );
+				return array( 'file' => $file, 'link' => $link, 'time' => $time, 'size' => $size );
+            }
+        }
 
 	/**
 	 * Do AJAX action.
@@ -876,9 +872,9 @@ class WPDB_Demo_Builder {
 			$export = self::$fs->get_contents( $path . 'database_dump.sql' ) . "\n\n{$export}";
 		}
 
-		if ( ! self::$fs->put_contents( $path . 'database_dump.sql', $export ) ) {
-			throw new Exception( __( 'Cannot write database export to file.', WPDB_TEXT ) );
-		}
+            if ( ! self::$fs->put_contents( $path . 'database_dump.sql', $export ) ) {
+                throw new Exception( __( 'Cannot write exported database to file.', WPDB_TEXT ) );
+            }
 
 		// Add database dump file to the root of site package if the whole database is exported
 		if ( ! isset( $tables[ ++$index ] ) ) {
@@ -950,16 +946,16 @@ class WPDB_Demo_Builder {
 		// Get starting index of directories being archived
 		$index = isset( $_GET['from'] ) ? (int) $_GET['from'] : null;
 
-		if ( is_null( $index ) || ! isset( $directories[ $index ] ) ) {
-			throw new Exception( __( 'Invalid directory index.', WPDB_TEXT ) );
-		}
+            if ( is_null( $index ) || ! isset( $directories[ $index ] ) ) {
+                throw new Exception( __( 'Invalid directory structure.', WPDB_TEXT ) );
+            }
 
 		// Get random string
 		$rand = isset( $_GET['rand'] ) ? $_GET['rand'] : null;
 
-		if ( is_null( $rand ) ) {
-			throw new Exception( __( 'Invalid random string.', WPDB_TEXT ) );
-		}
+            if ( is_null( $rand ) ) {
+                throw new Exception( __( 'Invalid session key.', WPDB_TEXT ) );
+            }
 
 		// Get all files being archived
 		$total = count( $directories );
@@ -1064,9 +1060,9 @@ class WPDB_Demo_Builder {
 		// Get random string
 		$rand = isset( $_GET['rand'] ) ? $_GET['rand'] : null;
 
-		if ( is_null( $rand ) ) {
-			throw new Exception( __( 'Invalid random string.', WPDB_TEXT ) );
-		}
+            if ( is_null( $rand ) ) {
+                throw new Exception( __( 'Invalid session key.', WPDB_TEXT ) );
+            }
 
 		// Get site package directory
 		//$path = wp_upload_dir();
@@ -1077,8 +1073,13 @@ class WPDB_Demo_Builder {
 		$file_name 	= 'temp_archive_' . $rand;
 		//self::$fs->move( $path . 'temp_archive_userid_' . $uid . '_' . $rand . '.zip', $path . $file );
 
-		// Get base site package info
-		$file = self::get_package($file_name);
+            // Get base site package info
+            $file = self::get_package($file_name);
+
+			if(!isset($file['file']) || !self::zip_is_valid($file['file']))
+			{
+				throw new Exception( __( 'Invalid or unsupported zip format.', WPDB_TEXT ) );
+			}
 
             return array(
                 'url'   => site_url( 'index.php?wp-demo-builder-action=download&rand=' . $rand ),
@@ -1206,12 +1207,29 @@ class WPDB_Demo_Builder {
 		exit;
 	}
 
-	/**
-	 * Delete site package.
-	 *
-	 * @return  void
-	 */
-	protected static function delete_package() {
+		/**
+		 * Check zip file is valid
+		 *
+		 * @param $path
+		 *
+		 * @return bool
+		 */
+		static function zip_is_valid($path) {
+			$zip = zip_open($path);
+			if (is_resource($zip)) {
+				// it's ok
+				zip_close($zip); // always close handle if you were just checking
+				return true;
+			} else {
+				return false;
+			}
+		}
+        /**
+         * Delete site package.
+         *
+         * @return  void
+         */
+        protected static function delete_package() {
 
 		// Get random string
 		$rand = isset( $_GET['rand'] ) ? $_GET['rand'] : null;

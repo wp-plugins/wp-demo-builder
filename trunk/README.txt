@@ -55,6 +55,9 @@ For further information, product details, help and tutorials, please visit our w
 
 == Changelog ==
 
+= 1.2.1 =
+* Improve alert system of message, includes: Warning, Error ...
+
 = 1.2.0 =
 * Improve alert system of message, includes: Warning, Error ...
 * Support multisite

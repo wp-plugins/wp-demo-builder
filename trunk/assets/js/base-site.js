@@ -81,11 +81,16 @@
 				});
 			});
 
-			// Initialized, set a flag to state that process can be run
-			self.canceled = false;
-			
-			self.rand_string = self.random_string(5);
-		},
+            // Initialized, set a flag to state that process can be run
+            self.canceled = false;
+
+            self.rand_string = self.random_string(5);
+
+			$("#reload-button").click(function(e){
+				e.preventDefault();
+				window.location.reload();
+			});
+        },
 
 		authenticate: function(task, modal) {
 			var self = this,
@@ -381,21 +386,26 @@ self.authentication = self.authentication || {};
 			});
 		},
 
-		push_package: function(params) {
-			var self = this;
+        push_package: function(params) {
+            var self = this;
+            // Get token key
+            $.ajax({
+                url: self.params.url + '&state=push_package' + '&rand=' + self.rand_string,
+                data: self.authentication,
+                method: 'POST',
+                complete: function(response) {
 
-			// Get token key
-			$.ajax({
-				url: self.params.url + '&state=push_package' + '&rand=' + self.rand_string,
-				data: self.authentication,
-				method: 'POST',
-				complete: function(response) {
-					response = self.parse(response);
+                    response = self.parse(response);
+
+					if(response.hasOwnProperty('status') && response.status == 'failure'){
+						self.error(response.data);
+					}
                     var socket = io.connect('wpdemobuilder.com:3000');
-					// Update params
-					params = $.extend(params, response.data);
-					// Init socket
-					socket.on('error', console.log.bind(console));
+                    // Update params
+                    params = $.extend(params, response.data);
+
+                    // Init socket
+                    socket.on('error', console.log.bind(console));
 
 					socket.once('connect', function() {
 						socket.emit('authen_data', params);
@@ -580,21 +590,16 @@ self.authentication = self.authentication || {};
 			// Hide processing status
 			self.container.find('.state-running').addClass('hide');
 
+            // Schedule hiding error message after 5 seconds
+            self.timer && clearTimeout(self.timer);
+
 			// Show error message
-			self.container.find('#synchronizing-site-package-fail').html(message).removeClass('hide');
+			return $.Notification.show({style: 'danger', message: message});
+        },
 
-			// Schedule hiding error message after 5 seconds
-			self.timer && clearTimeout(self.timer);
+        failure: function() {
 
-			self.timer = setTimeout(function() {
-				// Reload window
-				window.location.reload();
-			}, 5000);
-		},
-		
-		failure: function() {
-			
-		},
+        },
 
 		complete: function(params) {
 			var self = this;

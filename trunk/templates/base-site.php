@@ -27,6 +27,7 @@
         <div id="notification-wrapper" style="width: 50%;text-align: center;"></div>
 		<button id="create-site-package" class="btn btn-primary btn-lg" ><?php _e( 'Start', WPDB_TEXT ); ?></button>
 		<button id="cancel-process" class="btn btn-danger btn-lg hide"><?php _e( 'Cancel', WPDB_TEXT ); ?></button>
+		<button id="reload-button" class="btn btn-info btn-lg hide"><?php _e( 'Retry', WPDB_TEXT ); ?></button>
 		<button id="manage-base-site" class="btn btn-primary btn-lg hide"><?php _e( 'Manage Base Site', WPDB_TEXT ); ?></button>
 		<a id="config-embed-code" class="btn btn-default btn-lg hide" href="<?php echo esc_url( admin_url( 'admin.php?page=wpdb-embed-settings' ) ); ?>">
 			<?php _e( 'Configure Appearance Settings', WPDB_TEXT ); ?>
