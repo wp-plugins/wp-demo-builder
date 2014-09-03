@@ -16,9 +16,7 @@ WP Demo Builder helps you create separate demo sites that allow your users to li
 
  We need your invaluable feedback!</h4> 
 
-<strong>WP Demo Builder</strong> is in its beta phase so every feedback of yours is very important for us to develop and deliver a better service to you. Please feel free to drop your impression, thoughts on our service, suggestion for improvement and ideas for different usage purposes at: 
-
-http://www.wpdemobuilder.com/feedback/
+<strong>WP Demo Builder</strong> is in its beta phase so every feedback of yours is very important for us to develop and deliver a better service to you. Please feel free to drop your impression, thoughts on our service, suggestion for improvement and ideas for different usage purposes at: http://www.wpdemobuilder.com/feedback/
 
 We truly appreciate and thank you for your help!
 
