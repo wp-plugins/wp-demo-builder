@@ -11,6 +11,17 @@ WP Demo Builder helps you create separate demo sites that allow your users to li
 
 == Description ==
 
+<h4>[IMPORTANT]
+
+
+ We need your invaluable feedback!</h4> 
+
+<strong>WP Demo Builder</strong> is in its beta phase so every feedback of yours is very important for us to develop and deliver a better service to you. Please feel free to drop your impression, thoughts on our service, suggestion for improvement and ideas for different usage purposes at: 
+
+http://www.wpdemobuilder.com/feedback/
+
+We truly appreciate and thank you for your help!
+
 <h4>Demo your wonderful product the way it deserves!</h4>
 
 <strong>WP Demo Builder</strong> is the most powerful and simplest way to let your potential customers truly experience your WordPress products. A game changer and the first of its kind, our service helps you create separate demo sites that allow your users to literally do everything with it, both backend and frontend.
@@ -27,16 +38,6 @@ With just few simple steps, your product's demo is all set and ready to be deliv
 
 * <strong>Export your demo to your customers:</strong> With <strong>WP Demo Builder</strong>, you can export each customer's demo site into a quickstart package so that they can easily deploy on their production site.
 
-<h4>[IMPORTANT]
-
-
- We need your invaluable feedback!</h4> 
-
-<strong>WP Demo Builder</strong> is in its beta phase so every feedback of yours is very important for us to develop and deliver a better service to you. Please feel free to drop your impression, thoughts on our service, suggestion for improvement and ideas for different usage purposes at: 
-
-http://www.wpdemobuilder.com/feedback/
-
-We truly appreciate and thank you for your help!
 
 <i>*If you like our plugin and service, please vote for it!*</i>
 
