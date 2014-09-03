@@ -11,8 +11,18 @@ WP Demo Builder helps you create separate demo sites that allow your users to li
 
 == Description ==
 
-<h4>Demo your wonderful product the way it deserves!</h4>
+<h4>[IMPORTANT]
 
+
+ We need your invaluable feedback!</h4> 
+
+<strong>WP Demo Builder</strong> is in its beta phase so every comment, feedback of yours is very important for us to develop and deliver a better service to you. Please feel free to drop your impression, thoughts on our product, suggestion for improvement and ideas for different usage purposes at: 
+
+http://www.wpdemobuilder.com/feedback/
+
+We truly appreciate and thank you for your help!
+
+<h4>Demo your wonderful product the way it deserves!</h4>
 
 <strong>WP Demo Builder</strong> is the most powerful and simplest way to let your potential customers truly experience your WordPress products. A game changer and the first of its kind, our service helps you create separate demo sites that allow your users to literally do everything with it, both backend and frontend.
 
@@ -53,37 +63,7 @@ You're done! Now you have a shiny WordPress Demo Builder tool running on your de
 
 For further information, product details, help and tutorials, please visit our website: http://www.wpdemobuilder.com
 
-== Changelog ==
 
-= 1.2.1 =
-* Improve alert system of message, includes: Warning, Error ...
-
-= 1.2.0 =
-* Improve alert system of message, includes: Warning, Error ...
-* Support multisite
-* Update CSS Style
-
-= 1.1.0 =
-* Update the style
-
-= 1.0.3 =
-* Fix bug that causes invalid token and hang uploading process on multiple-threaded upload
-* Fix bug that causes PHP memory limit error
-
-= 1.0.2 =
-* Fix some minor bugs
-* Change server's URL
-
-= 1.0.1 =
-* Improve archiving step, make it operate faster on shared hosting 
-* Add the function that allows to select icon for Demo Builder Register Button
-* Add The re-connection function, that allows user re-connect to a Base Site without pushing it up the Demo Builder Server again
-* Update style of the Demo Builder Register Form
-* Add the function that will delete all options of WP Demo Builder plugin when un-installing it
-* Update the style in both pages: Base Site & Settings
-
-= 1.0.0 =
-* First version
 
 
 
