@@ -1,0 +1,238 @@
+/**
+ * @version    $Id$
+ * @package    WPDB_Demo_Builder
+ * @author     WPDemoBuilder Team <admin@wpdemobuilder.com>
+ * @copyright  Copyright (C) 2014 WPDemoBuilder.com. All Rights Reserved.
+ * @license    GNU/GPL v2 or later http://www.gnu.org/licenses/gpl-2.0.html
+ *
+ * Websites: http://www.wpdemobuilder.com
+ */
+ 
+div#wpdb-demo-builder-toggle,
+div#wpdb-toggle {
+    position: fixed;
+    transition: all .6s ease;
+    -moz-transition: all .6s ease;
+    -webkit-transition: all .6s ease;
+    margin: 0;
+    padding: 0;
+    z-index: 999999;
+}
+div#wpdb-demo-builder-toggle > div > iframe,
+div#wpdb-toggle > div > iframe {
+    background: #fff url(http://wpdemobuilder.com/cpanel/assets/wpdb/common/images/db-loading.gif) center center no-repeat;
+    z-index: 10;
+    width: 480px !important;
+}
+div#wpdb-demo-builder-toggle>div,div#wpdb-demo-builder-toggle>a,
+div#wpdb-toggle>div,div#wpdb-toggle>a {
+    float: left;
+    cursor: pointer;
+}
+div#wpdb-demo-builder-toggle > a,
+div#wpdb-toggle > a {
+    overflow: hidden;
+    position: absolute;
+    display: block;
+    white-space: nowrap;
+    z-index: 0;
+    border-radius: 10px 10px 0 0;
+}
+div#wpdb-demo-builder-toggle > a > span,
+div#wpdb-toggle > a > span {
+    display: inline-block;
+    line-height: 36px;
+    min-width: 20px;
+    font-size: 13px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: .09em;
+}
+
+div#wpdb-demo-builder-toggle > a > span.wpdb-bootstrap,
+div#wpdb-toggle > a > span.wpdb-bootstrap {
+ 	margin-right: 10px;
+	margin-left: 12px;
+}
+
+
+div#wpdb-demo-builder-toggle > a > span.wpdb-bootstrap i,
+div#wpdb-toggle > a > span.wpdb-bootstrap i {
+	font-size: 15px;
+	vertical-align: middle;
+}
+/* --- STYLE DARK --- */
+div#wpdb-demo-builder-toggle.dark > div > iframe,
+div#wpdb-toggle.dark > div > iframe {
+    border: solid 10px #434448;
+}
+div#wpdb-demo-builder-toggle.dark > a,
+div#wpdb-toggle.dark > a {
+    background: #686868;
+    background: -moz-linear-gradient(top,rgba(104,104,104,1) 0,rgba(67,68,72,1) 69%,rgba(67,68,72,1) 100%);
+    background: -webkit-gradient(linear,left top,left bottom,color-stop(0%,rgba(104,104,104,1)),color-stop(69%,rgba(67,68,72,1)),color-stop(100%,rgba(67,68,72,1)));
+    background: -webkit-linear-gradient(top,rgba(104,104,104,1) 0,rgba(67,68,72,1) 69%,rgba(67,68,72,1) 100%);
+    background: -o-linear-gradient(top,rgba(104,104,104,1) 0,rgba(67,68,72,1) 69%,rgba(67,68,72,1) 100%);
+    background: -ms-linear-gradient(top,rgba(104,104,104,1) 0,rgba(67,68,72,1) 69%,rgba(67,68,72,1) 100%);
+    background: linear-gradient(to bottom,rgba(104,104,104,1) 0,rgba(67,68,72,1) 69%,rgba(67,68,72,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#686868",endColorstr="#434448",GradientType=0);
+    
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.1),0 -1px 10px rgba(0,0,0,0.5);
+    
+    color: #eee;
+    text-shadow: 0 1px 0 #000;
+}
+div#wpdb-demo-builder-toggle.dark > a:hover,
+div#wpdb-toggle.dark > a:hover {
+	color: #eee;
+}
+div#wpdb-demo-builder-toggle.dark > a > span.wpdb-bootstrap i,
+div#wpdb-toggle.dark > a > span.wpdb-bootstrap i {
+	color: rgb(241, 207, 72);
+}
+
+
+/* --- STYLE LIGHT --- */
+div#wpdb-demo-builder-toggle.light > div > iframe,
+div#wpdb-toggle.light > div > iframe {
+    border: solid 10px #ededed;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+div#wpdb-demo-builder-toggle.light > a,
+div#wpdb-toggle.light > a {
+	background: rgb(255,255,255); /* Old browsers */
+	background: -moz-linear-gradient(top,  rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(47%,rgba(246,246,246,1)), color-stop(100%,rgba(237,237,237,1))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed',GradientType=0 ); /* IE6-9 */
+
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.1),0 -1px 10px rgba(0,0,0,0.2);
+    
+    color: #666;
+}
+div#wpdb-demo-builder-toggle.light > a:hover,
+div#wpdb-toggle.light > a:hover {
+	color: #333;
+}
+div#wpdb-demo-builder-toggle.light > a > span.wpdb-bootstrap i,
+div#wpdb-toggle.light > a > span.wpdb-bootstrap i {
+	color: rgb(165, 78, 141);
+}
+
+
+
+
+/* --- POSITION LEFT --- */
+div#wpdb-demo-builder-toggle.left,
+div#wpdb-toggle.left {
+	top:0;
+	left:-480px;
+}
+
+div#wpdb-demo-builder-toggle.left.active,
+div#wpdb-toggle.left.active {
+	left:0;
+}
+
+div#wpdb-demo-builder-toggle.left > a,
+div#wpdb-toggle.left > a {
+	left:100%;
+	top:20px;
+	-webkit-transform:rotate(90deg);
+	-moz-transform:rotate(90deg);
+	-ms-transform:rotate(90deg);
+	-o-transform:rotate(90deg);
+	transform:rotate(90deg);
+	-webkit-transform-origin:left bottom;
+	-moz-transform-origin:left bottom;
+	-ms-transform-origin:left bottom;
+	-o-transform-origin:left bottom;
+	transform-origin:left bottom;
+}
+
+div#wpdb-demo-builder-toggle.left > a >.center,
+div#wpdb-toggle.left > a >.center {
+	-webkit-transform:rotate(180deg);
+	-moz-transform:rotate(180deg);
+	-ms-transform:rotate(180deg);
+	-o-transform:rotate(180deg);
+	transform:rotate(180deg);
+}
+
+/* --- POSITION RIGHT --- */
+
+div#wpdb-demo-builder-toggle.right,
+div#wpdb-toggle.right {
+	top:0;
+	right:-480px;
+}
+
+div#wpdb-demo-builder-toggle.right.active,
+div#wpdb-toggle.right.active {
+	right:0;
+}
+
+div#wpdb-demo-builder-toggle.right > a,
+div#wpdb-toggle.right > a {
+	right:100%;
+	top:20px;
+	-webkit-transform:rotate(-90deg);
+	-moz-transform:rotate(-90deg);
+	-ms-transform:rotate(-90deg);
+	-o-transform:rotate(-90deg);
+	transform:rotate(-90deg);
+	-webkit-transform-origin:right bottom;
+	-moz-transform-origin:right bottom;
+	-ms-transform-origin:right bottom;
+	-o-transform-origin:right bottom;
+	transform-origin:right bottom;
+}
+
+/* --- POSITION BOTTOM LEFT --- */
+div#wpdb-demo-builder-toggle.bottom-left,
+div#wpdb-toggle.bottom-left {
+	left:0;
+	bottom:-600px;
+}
+
+div#wpdb-demo-builder-toggle.bottom-left.active,
+div#wpdb-toggle.bottom-left.active {
+	bottom:-10px;
+}
+
+div#wpdb-demo-builder-toggle.bottom-left > a,
+div#wpdb-toggle.bottom-left > a {
+	bottom:100%;
+	left:20px;
+}
+
+
+
+/* --- POSITION BOTTOM RIGHT --- */
+
+div#wpdb-demo-builder-toggle.bottom-right,
+div#wpdb-toggle.bottom-right {
+	right:0;
+	bottom:-600px;
+}
+
+div#wpdb-demo-builder-toggle.bottom-right.active,
+div#wpdb-toggle.bottom-right.active {
+	bottom:-10px;
+}
+
+div#wpdb-demo-builder-toggle.bottom-right > a,
+div#wpdb-toggle.bottom-right > a {
+	bottom:100%;
+	right:20px;
+}
+
+div#wpdb-demo-builder-toggle,
+div#wpdb-toggle,
+div#wpdb-demo-builder-toggle *,
+div#wpdb-toggle * {
+	box-sizing: border-box;
+}
