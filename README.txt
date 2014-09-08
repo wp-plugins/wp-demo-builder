@@ -11,20 +11,12 @@ WP Demo Builder helps you create separate demo sites that allow your users to li
 
 == Description ==
 
-<h4>[IMPORTANT]
-
-
- We need your invaluable feedback!</h4> 
-
-<strong>WP Demo Builder</strong> is in its beta phase so every feedback of yours is very important for us to develop and deliver a better service to you. Please feel free to drop your impression, thoughts on our service, suggestion for improvement and ideas for different usage purposes at: http://www.wpdemobuilder.com/feedback/
-
-<strong><i>We truly appreciate and thanks for your help!</i></strong>
-
 <h4>Demo your wonderful product the way it deserves!</h4>
+
 
 <strong>WP Demo Builder</strong> is the most powerful and simplest way to let your potential customers truly experience your WordPress products. A game changer and the first of its kind, our service helps you create separate demo sites that allow your users to literally do everything with it, both backend and frontend.
 
-Visit our website and sign up for Free: <strong>http://www.wpdemobuilder.com</strong>
+Visit our website at: <strong>http://www.wpdemobuilder.com</strong>
 
 With just few simple steps, your product's demo is all set and ready to be delivered to your customers!
 
@@ -35,7 +27,6 @@ With just few simple steps, your product's demo is all set and ready to be deliv
 * <strong>Ability to install any plug-ins:</strong> <strong>WP Demo Builder</strong> is the only service that lets your customers install plug-ins! This helps them better appreciate the quality of your product.
 
 * <strong>Export your demo to your customers:</strong> With <strong>WP Demo Builder</strong>, you can export each customer's demo site into a quickstart package so that they can easily deploy on their production site.
-
 
 <i>*If you like our plugin and service, please vote for it!*</i>
 
@@ -62,7 +53,41 @@ You're done! Now you have a shiny WordPress Demo Builder tool running on your de
 
 For further information, product details, help and tutorials, please visit our website: http://www.wpdemobuilder.com
 
+== Changelog ==
 
+= 1.3.0 =
+* Add the function to force user to update the plugin to the latest version
+* Fix some of security errors
+
+= 1.2.1 =
+* Improve alert system of message, includes: Warning, Error ...
+
+= 1.2.0 =
+* Improve alert system of message, includes: Warning, Error ...
+* Support multisite
+* Update CSS Style
+
+= 1.1.0 =
+* Update the style
+
+= 1.0.3 =
+* Fix bug that causes invalid token and hang uploading process on multiple-threaded upload
+* Fix bug that causes PHP memory limit error
+
+= 1.0.2 =
+* Fix some minor bugs
+* Change server's URL
+
+= 1.0.1 =
+* Improve archiving step, make it operate faster on shared hosting 
+* Add the function that allows to select icon for Demo Builder Register Button
+* Add The re-connection function, that allows user re-connect to a Base Site without pushing it up the Demo Builder Server again
+* Update style of the Demo Builder Register Form
+* Add the function that will delete all options of WP Demo Builder plugin when un-installing it
+* Update the style in both pages: Base Site & Settings
+
+= 1.0.0 =
+* First version
 
 
 

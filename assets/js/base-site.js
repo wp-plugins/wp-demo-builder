@@ -640,8 +640,8 @@ self.authentication = self.authentication || {};
 							// Update login form then submit
 							var form = iframe.contents().find('form');
 
-							form.find('input[name="email"]').attr('type', 'hidden').val(self.authentication.email);
-							form.find('input[name="password"]').attr('type', 'hidden').val(self.authentication.password);
+                            form.find('input[name="email"]').val(self.authentication.email);
+                            form.find('input[name="password"]').val(self.authentication.password);
 
 							form.submit();
 
