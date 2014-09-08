@@ -24,7 +24,7 @@ WP Demo Builder helps you create separate demo sites that allow your users to li
 
 <strong>WP Demo Builder</strong> is the most powerful and simplest way to let your potential customers truly experience your WordPress products. A game changer and the first of its kind, our service helps you create separate demo sites that allow your users to literally do everything with it, both backend and frontend.
 
-Visit our website at: <strong>http://www.wpdemobuilder.com</strong>
+Visit our website and sign up for Free: <strong>http://www.wpdemobuilder.com</strong>
 
 With just few simple steps, your product's demo is all set and ready to be delivered to your customers!
 
