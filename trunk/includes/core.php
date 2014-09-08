@@ -132,7 +132,7 @@ class WPDB_Demo_Builder {
          */
         public static function hook() {
         // Register plugin activation action
-         register_activation_hook( WPDB_PLUGIN, array( __CLASS__, 'check_localhost' ) );
+        register_activation_hook( WPDB_PLUGIN, array( __CLASS__, 'check_localhost' ) );
 
 		// Register filter to add extra query variable
 		add_filter( 'query_vars', array( __CLASS__, 'query_vars' ) );
@@ -347,6 +347,34 @@ class WPDB_Demo_Builder {
 			$file['size'] = ( round( $file['size'] / 1048576, 2 ) ) . ' MB';
 		}*/
 
+			// Get local plugin information
+			$plugin_file = basename( ( WPDB_PLUGIN ) );
+			$local_plugin_info = get_plugins( '/' . WPDB_TEXT );
+			$local_plugin_version = $local_plugin_info[$plugin_file]['Version'];
+			
+			// Get remote plugin information from wordpress.org
+			require( ABSPATH . 'wp-admin/includes/plugin-install.php' );
+			$remote_plugin_info = plugins_api( 'plugin_information', array( 'slug' => WPDB_TEXT ) );
+			
+			/** Check for Errors & Display the results */
+			if ( is_wp_error( $remote_plugin_info ) ) {
+				
+				$notificationMsg = 'Cannot connect to WordPress SubVersion to get the plugin information.';
+				include_once dirname( dirname( __FILE__ ) ) . '/templates/update-plugin-notification.php';
+				return true;
+				
+			}
+			
+			$remote_plugin_version = $remote_plugin_info->version;
+			
+			/** Check version if local version < reomote version, then force user to update the plugin to the latest version */
+			if (version_compare($local_plugin_version, $remote_plugin_version, '<'))
+			{
+				$notificationMsg = 'Current version of WPDemoBuilder plugin is outdated! Please update to latest version.';
+				include_once dirname( dirname( __FILE__ ) ) . '/templates/update-plugin-notification.php';
+				return true;
+			}
+		
             //Check folder upload is wriable or not
             $isWriableUploadsDir = true;
             $path = wp_upload_dir();
@@ -363,7 +391,7 @@ class WPDB_Demo_Builder {
             $multisiteEnabled  = self::check_multisite();
             // Load page template
             include_once dirname( dirname( __FILE__ ) ) . '/templates/base-site.php';
-        }
+       }
 
         static function check_perms($check) {
             if( !is_file($check) && is_dir($check) ) {
@@ -665,10 +693,11 @@ class WPDB_Demo_Builder {
 		// Get site package directory
 		$path = wp_upload_dir();
 		$path = $path['basedir'] . '/site-package/';
+		$sql_path = $path . $rand . '/';
 
 		// Delete database dump file
-		if ( self::$fs->exists( $path . 'database_dump.sql' ) && self::$fs->is_file( $path . 'database_dump.sql' ) ) {
-			self::$fs->delete( $path . 'database_dump.sql' );
+		if ( self::$fs->exists( $sql_path ) || self::$fs->is_dir( $sql_path ) ) {
+			self::$fs->rmdir( $sql_path, true );
 		}
 
 		// Delete directory list file
@@ -864,17 +893,23 @@ class WPDB_Demo_Builder {
 		// Save exported SQL statement to file
 		$path = wp_upload_dir();
 		$path = $path['basedir'] . '/site-package/';
+		$sql_path = $path . $rand . '/';
 
+		if ( ! self::$fs->exists( $sql_path ) || ! self::$fs->is_dir( $sql_path ) ) {
+			if ( ! self::$fs->mkdir( $sql_path ) ) {
+				throw new Exception( __( 'Cannot create directory to store database file.', WPDB_TEXT ) );
+			}
+		}
 		$export = implode( "\n", $export );
 		$export = substr( $export, 0, -1 ) . ';';
 
 		if ( $index > 0 ) {
-			$export = self::$fs->get_contents( $path . 'database_dump.sql' ) . "\n\n{$export}";
+			$export = self::$fs->get_contents( $sql_path . 'database_dump.sql' ) . "\n\n{$export}";
 		}
 
-            if ( ! self::$fs->put_contents( $path . 'database_dump.sql', $export ) ) {
-                throw new Exception( __( 'Cannot write exported database to file.', WPDB_TEXT ) );
-            }
+		if ( ! self::$fs->put_contents( $sql_path . 'database_dump.sql', $export ) ) {
+			throw new Exception( __( 'Cannot write exported database to file.', WPDB_TEXT ) );
+		}
 
 		// Add database dump file to the root of site package if the whole database is exported
 		if ( ! isset( $tables[ ++$index ] ) ) {
@@ -886,12 +921,12 @@ class WPDB_Demo_Builder {
 			}
 
 			// Create temporary archive file
-			if ( ! self::update_archive( $path . 'database_dump.sql', $rand, $path ) ) {
+			if ( ! self::update_archive( $sql_path . 'database_dump.sql', $rand, $sql_path ) ) {
 				throw new Exception( __( 'Cannot create site package archive.', WPDB_TEXT ) );
 			}
 
 			// Remove database dump file
-			self::$fs->delete( $path . 'database_dump.sql' );
+			self::$fs->rmdir( $sql_path, true );
 		}
 
 		return array(

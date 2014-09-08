@@ -19,7 +19,7 @@
 	</div>
 	<?php endif; ?>
 	<div class="form-group clearfix">
-		<label class="col-sm-3 control-label" for="email"><?php _e( 'Email', WPDB_TEXT ); ?>:</label>
+		<label class="col-sm-3 control-label" for="email"><?php _e( 'Email / Username', WPDB_TEXT ); ?>:</label>
 		<div class="col-sm-9">
 			<input type="text" value="" class="form-control" id="email" name="email" autocomplete="off" />
 		</div>
