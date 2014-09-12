@@ -31,4 +31,5 @@
 		</div>
 	</div>
 	<input type="hidden" name="task" value="<?php echo esc_attr( isset( $_REQUEST['task'] ) ? $_REQUEST['task'] : '' ); ?>" />
+	<div><?php printf( __('Please enter your WP Demo Builder account to authenticate with WP Demo Builder server. If you don\'t have any account yet, you can sign up for free <a href="%s" target="_blank">here</a>', WPDB_TEXT ), self::$server . 'customer/login#register' ); ?></div>
 </form>
