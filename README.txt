@@ -55,6 +55,9 @@ For further information, product details, help and tutorials, please visit our w
 
 == Changelog ==
 
+= 1.3.1 =
+* Add a message to show to user how to sign up for free at the first time 
+
 = 1.3.0 =
 * Add the function to force user to update the plugin to the latest version
 * Fix some of security errors
