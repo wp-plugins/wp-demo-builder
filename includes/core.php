@@ -558,6 +558,16 @@ class WPDB_Demo_Builder {
 				}
 			}
 
+			//Create dummy file to prevent expose all files in site-package folder
+			if ( self::$fs->exists( $path ) || self::$fs->is_dir( $path ) ) {
+				$dummy_file_path = $path . '/index.html';
+				if (! self::$fs->exists( $dummy_file_path ) || ! self::$fs->is_file( $dummy_file_path )) {
+					if (! self::$fs->put_contents( $dummy_file_path, '<html><body bgcolor="#FFFFFF"></body></html>' ) ) {
+						throw new Exception( __( 'Cannot create dummy file in folder site-package.', WPDB_TEXT ) );
+					}
+				}
+			}
+			
 			// Execute current state
 			$result = array(
 				'status' => 'success',
@@ -1095,9 +1105,9 @@ class WPDB_Demo_Builder {
 		// Get random string
 		$rand = isset( $_GET['rand'] ) ? $_GET['rand'] : null;
 
-            if ( is_null( $rand ) ) {
-                throw new Exception( __( 'Invalid session key.', WPDB_TEXT ) );
-            }
+		if ( is_null( $rand ) ) {
+			throw new Exception( __( 'Invalid session key.', WPDB_TEXT ) );
+		}
 
 		// Get site package directory
 		//$path = wp_upload_dir();
@@ -1108,19 +1118,19 @@ class WPDB_Demo_Builder {
 		$file_name 	= 'temp_archive_' . $rand;
 		//self::$fs->move( $path . 'temp_archive_userid_' . $uid . '_' . $rand . '.zip', $path . $file );
 
-            // Get base site package info
-            $file = self::get_package($file_name);
+		// Get base site package info
+		$file = self::get_package($file_name);
 
-			if(!isset($file['file']) || !self::zip_is_valid($file['file']))
-			{
-				throw new Exception( __( 'Invalid or unsupported zip format.', WPDB_TEXT ) );
-			}
+		if(!isset($file['file']) || !self::zip_is_valid($file['file']))
+		{
+			throw new Exception( __( 'Invalid or unsupported zip format.', WPDB_TEXT ) );
+		}
 
-            return array(
-                'url'   => site_url( 'index.php?wp-demo-builder-action=download&rand=' . $rand ),
-                'size'  => $file['size'],
-            );
-        }
+		return array(
+				'url'   => site_url( 'index.php?wp-demo-builder-action=download&rand=' . $rand ),
+				'size'  => $file['size'],
+		);
+	}
 
 	/**
 	 * Get embed code to render panel to build demo site.
@@ -1249,15 +1259,18 @@ class WPDB_Demo_Builder {
 		 *
 		 * @return bool
 		 */
-		static function zip_is_valid($path) {
-			$zip = zip_open($path);
-			if (is_resource($zip)) {
-				// it's ok
-				zip_close($zip); // always close handle if you were just checking
-				return true;
-			} else {
-				return false;
+		protected static function zip_is_valid( $path ) {
+			// Instantiate a PclZip object to archive files
+			if ( ! class_exists( 'PclZip' ) ) {
+				include_once ABSPATH . 'wp-admin/includes/class-pclzip.php';
 			}
+			
+			$archive = new PclZip( $path );
+			
+			if ( $archive->listContent() === false ) {
+				return false;
+			} 
+			return true;
 		}
         /**
          * Delete site package.

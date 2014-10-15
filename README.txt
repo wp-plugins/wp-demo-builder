@@ -55,6 +55,10 @@ For further information, product details, help and tutorials, please visit our w
 
 == Changelog ==
 
+= 1.3.2 =
+* Use WordPress Class PclZip to check whether a zip file is valid or not instead of zip_open native function PHP
+* Add dummy file index.html to site_packages folder
+
 = 1.3.1 =
 * Add a message to show to user how to sign up for free at the first time 
 
