@@ -789,7 +789,7 @@ class WPDB_Demo_Builder {
             // Get real table
 
             if ( empty( $table ) || false === ( $index = array_search( $table, $tables ) ) ) {
-                throw new Exception( __( 'Invalid database table name.', WPDB_TEXT ) );
+                throw new Exception( __( 'Invalid database table name : '.$table , WPDB_TEXT ) );
             }
 
             $real_table = $table;
