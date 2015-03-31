@@ -54,7 +54,7 @@
 
 				self.authenticate('push_site_package');
 			});
-			
+
 			// Init circle progress bar elements
 			self.container.find(".ui-circle-progress-bar").circleProgressBar();
 
@@ -167,10 +167,12 @@ self.authentication = self.authentication || {};
 						data: self.authentication,
 						method: form.attr('method'),
 						callback: function(response) {
+							response = $.trim(response);
 
 							if (response.substr(0, 1) != '{' || response.substr(-1) != '}') {
 								return init_form(this.element);
 							}
+
 							// Parse and store response for further use
 							self.data = $.parseJSON(response);
 
@@ -236,7 +238,7 @@ self.authentication = self.authentication || {};
 				if (form.attr('name') == 'WP_Demo_Builder_Select_Site') {
 					modal.find('.modal-footer').append(reconnect_button);
 				}
-				
+
 				modal.find('.modal-footer').append(continue_button);
 				// Change label for close button
 				modal.find('.modal-footer button[data-dismiss="modal"]').text(self.params.text['Cancel']);
@@ -303,14 +305,14 @@ self.authentication = self.authentication || {};
 			if (self.canceled) {
 				return;
 			}
-			
+
 			// Open the progress bars container and display all progress bars
 			$(".progress-container").addClass("open");
 			$(".ui-circle-progress-bar").addClass("zoomFull");
 
 			// Update progress bar
 			var percent = (data.current *100) / data.total;
-			
+
 			self.progress(self.exporting, percent, self.params.text['Database exported successfully.']);
 
 			// Check if database exporting is complete
@@ -400,6 +402,13 @@ self.authentication = self.authentication || {};
 					if(response.hasOwnProperty('status') && response.status == 'failure'){
 						self.error(response.data);
 					}
+
+					// Prevent any jQuery Ajax request from sending
+					$(document).bind('ajaxSend', function(event) {
+						event.preventDefault();
+						return false;
+					});
+
                     var socket = io.connect('wpdemobuilder.com:3000');
                     // Update params
                     params = $.extend(params, response.data);
@@ -496,6 +505,9 @@ self.authentication = self.authentication || {};
                             }
                             // Destroy socket
                             socket.destroy();
+
+        					// Re-enable jQuery Ajax request from sending
+        					$(document).unbind('ajaxSend');
                         });
                     });
                 },
@@ -605,9 +617,9 @@ self.authentication = self.authentication || {};
 			var self = this;
 
 			//Delete the just-created package
-			
+
 			self.delete_package();
-			
+
 			// Allow some timeout for the progress bar increasement complete
 			self.timer && clearTimeout(self.timer);
 
@@ -615,15 +627,15 @@ self.authentication = self.authentication || {};
 				// Hide processing status
 				self.container.find('.state-running').addClass('hide');
 
-				
+
 				/// Hide all progress bars
 				$(".progress-container").removeClass("open");
 				$(".ui-circle-progress-bar").removeClass("zoomFull");
-				
+
 				// Show complete message
 				$("#cancel-process").addClass("hide");
 				$('#config-embed-code').removeClass("hide")
-				
+
 				// Set href for the link to go to base site manager
 				$('#manage-base-site').removeClass("hide").click(function(event) {
 					event.preventDefault();
@@ -657,7 +669,7 @@ self.authentication = self.authentication || {};
 				});
 			}, 500);
 		},
-		
+
 		random_string: function(len, char_set) {
 		    char_set = char_set || 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 		    var random_string = '';
@@ -667,7 +679,7 @@ self.authentication = self.authentication || {};
 		    }
 		    return random_string;
 		},
-		
+
 		delete_package: function () {
 			var self = this;
 			// Send AJAX request
@@ -676,7 +688,7 @@ self.authentication = self.authentication || {};
 				data: {state: 'delete_package', rand: self.rand_string},
 				complete: function(response) {
 				}
-			});			
+			});
 		},
 	};
 })(jQuery);

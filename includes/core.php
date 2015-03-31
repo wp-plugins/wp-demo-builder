@@ -351,22 +351,22 @@ class WPDB_Demo_Builder {
 			$plugin_file = basename( ( WPDB_PLUGIN ) );
 			$local_plugin_info = get_plugins( '/' . WPDB_TEXT );
 			$local_plugin_version = $local_plugin_info[$plugin_file]['Version'];
-			
+
 			// Get remote plugin information from wordpress.org
 			require( ABSPATH . 'wp-admin/includes/plugin-install.php' );
 			$remote_plugin_info = plugins_api( 'plugin_information', array( 'slug' => WPDB_TEXT ) );
-			
+
 			/** Check for Errors & Display the results */
 			if ( is_wp_error( $remote_plugin_info ) ) {
-				
+
 				$notificationMsg = 'Cannot connect to WordPress SubVersion to get the plugin information.';
 				include_once dirname( dirname( __FILE__ ) ) . '/templates/update-plugin-notification.php';
 				return true;
-				
+
 			}
-			
+
 			$remote_plugin_version = $remote_plugin_info->version;
-			
+
 			/** Check version if local version < reomote version, then force user to update the plugin to the latest version */
 			if (version_compare($local_plugin_version, $remote_plugin_version, '<'))
 			{
@@ -374,7 +374,7 @@ class WPDB_Demo_Builder {
 				include_once dirname( dirname( __FILE__ ) ) . '/templates/update-plugin-notification.php';
 				return true;
 			}
-		
+
             //Check folder upload is wriable or not
             $isWriableUploadsDir = true;
             $path = wp_upload_dir();
@@ -567,7 +567,7 @@ class WPDB_Demo_Builder {
 					}
 				}
 			}
-			
+
 			// Execute current state
 			$result = array(
 				'status' => 'success',
@@ -891,7 +891,44 @@ class WPDB_Demo_Builder {
                 $values = array();
 
 			foreach ( array_values( $result ) as $value ) {
-				$values[] = str_replace( array( '\\', "\r", "\n", "'" ), array( '\\\\', '\\r', '\\n', "\\'" ), $value );
+				$value = self::convert_special_chars( $value );
+
+				// Check if value contains serialization string
+				if ( preg_match( '/a:\d+:\{/', $value ) ) {
+					$parts = explode( '";', $value );
+					$value = '';
+					$i     = 0;
+					$n     = count( $parts );
+
+					// Define call-back function
+					if ( ! function_exists( 'wp_demo_builder_replace_callback' ) ) {
+						function wp_demo_builder_replace_callback( $m ) {
+							return $m[1] . strlen( $m[4] ) . $m[3] . $m[4] . $m[5];
+						}
+					}
+
+					foreach ( $parts as $part ) {
+						if ( ++$i < $n ) {
+							$part .= '";';
+						}
+
+						$part = str_replace( array( "\r" , "\n" , "\\'" ), array( '', '' , "'" ), $part );
+
+						if ( preg_match( '/^(.*)(s:\d+:".+";)(.*)$/', $part, $match ) ) {
+							$match[2] = preg_replace_callback(
+								'/(s:)(\d+)(:")(.*)(";)/',
+								'wp_demo_builder_replace_callback',
+								$match[2]
+							);
+
+							$part = $match[1] . $match[2] . $match[3];
+						}
+
+						$value .= $part;
+					}
+				}
+
+				$values[] = str_replace( "'", "\\'", $value );
 			}
 
 			$export[] = "('" . implode( "', '", $values ) . "'),";
@@ -1264,12 +1301,12 @@ class WPDB_Demo_Builder {
 			if ( ! class_exists( 'PclZip' ) ) {
 				include_once ABSPATH . 'wp-admin/includes/class-pclzip.php';
 			}
-			
+
 			$archive = new PclZip( $path );
-			
+
 			if ( $archive->listContent() === false ) {
 				return false;
-			} 
+			}
 			return true;
 		}
         /**
@@ -1351,6 +1388,24 @@ class WPDB_Demo_Builder {
 		// Exit immediately to prevent the plugin from generating and returning JSON status
 		$return = array( 'result' => 'false', 'response' => '', 'message' => __( 'Invalid parameters.', WPDB_TEXT ) );
 		exit( json_encode( $return ) );
+	}
+
+	/**
+	 * Convert special characters in the given string to standard characters.
+	 *
+	 * @param   string  $string  String to convert.
+	 *
+	 * @return  string
+	 */
+	protected static function convert_special_chars( $string ) {
+		// Convert special quote characters to normal quotes
+		$search  = array( chr( 145 ), chr( 146 ), chr( 147 ), chr( 148 ), chr( 151 ) );
+		$replace = array( "'"       , "'"       , '"'       , '"'       , '-'        );
+
+		$string = str_replace( $search, $replace, $string );
+
+		// Remove all control and non-printable characters except new line, carriage return, tab and spacing
+		return preg_replace( '/[^\x0A\x20-\x7E]/', '', $string );
 	}
 
     /**
